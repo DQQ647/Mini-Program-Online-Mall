@@ -1,0 +1,13 @@
+.van-button {
+  border-radius: 4px;
+  font-size: 14px;
+  height: 44px;
+  line-height: 44px;
+  text-align: center;
+  width: 100%;
+  border: none;
+}
+.van-button--primary {
+  background: #1989fa;
+  color: #fff;
+}

@@ -1,0 +1,46 @@
+.container {
+  background: #f5f5f5;
+  min-height: 100vh;
+}
+.cart-item {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  padding: 20rpx;
+  margin: 20rpx;
+  border-radius: 16rpx;
+}
+.pic {
+  width: 120rpx;
+  height: 120rpx;
+}
+.info {
+  flex: 1;
+  margin-left: 20rpx;
+}
+.name {
+  font-size: 28rpx;
+  color: #333;
+}
+.price {
+  font-size: 26rpx;
+  color: #ff4d4f;
+  margin-top: 10rpx;
+}
+.count {
+  font-size: 24rpx;
+  color: #666;
+  margin-top: 10rpx;
+}
+.del-btn {
+  background: #ff4d4f;
+  color: #fff;
+  font-size: 24rpx;
+  padding: 10rpx 20rpx;
+  border-radius: 10rpx;
+}
+.empty-tip {
+  text-align: center;
+  padding-top: 200rpx;
+  color: #999;
+}

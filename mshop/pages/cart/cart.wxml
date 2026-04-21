@@ -1,0 +1,17 @@
+<view class="container">
+  <view class="cart-list" wx:if="{{cartList.length > 0}}">
+    <view class="cart-item" wx:for="{{cartList}}" wx:key="id">
+      <image src="{{item.image}}" class="pic" mode="widthFix"></image>
+      <view class="info">
+        <view class="name">{{item.name}}</view>
+        <view class="price">¥{{item.price}}</view>
+        <view class="count">x{{item.count}}</view>
+      </view>
+      <button class="del-btn" data-id="{{item.id}}" bindtap="delGoods">删除</button>
+    </view>
+  </view>
+
+  <view class="empty-tip" wx:else>
+    <text>购物车是空的~</text>
+  </view>
+</view>

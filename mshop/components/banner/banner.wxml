@@ -1,0 +1,5 @@
+<swiper class="banner" indicator-dots autoplay circular>
+  <swiper-item wx:for="{{bannerList}}" wx:key="index">
+    <image src="{{item.url}}" class="banner-img"></image>
+  </swiper-item>
+</swiper>

@@ -1,0 +1,22 @@
+<view class="container">
+  <!-- 轮播组件 -->
+  <banner bannerList="{{bannerList}}"></banner>
+
+  <!-- 简易导航 -->
+  <view class="nav-box">
+    <view class="nav-item" wx:for="{{navList}}" wx:key="index">
+      <text>{{item.text}}</text>
+    </view>
+  </view>
+
+  <!-- 商品列表（带点击跳转） -->
+  <view class="goods-list">
+    <view class="item" wx:for="{{goodList}}" wx:key="id" bindtap="goDetail" data-id="{{item.id}}">
+      <image src="{{item.image}}" class="pic" mode="widthFix"></image>
+      <view class="info">
+        <text class="name">{{item.name}}</text>
+        <text class="price">¥{{item.price}}</text>
+      </view>
+    </view>
+  </view>
+</view>

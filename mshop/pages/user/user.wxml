@@ -1,0 +1,12 @@
+<view class="container">
+  <view class="user-info">
+    <image class="avatar" src="https://img14.360buyimg.com/n1/jfs/t1/208024/33/25333/131113/647d2308F901c8370/2c3b2d083d080856.jpg" mode="widthFix"></image>
+    <text class="nickname">未登录用户</text>
+  </view>
+
+  <view class="menu-list">
+    <view class="menu-item">我的订单</view>
+    <view class="menu-item">收货地址</view>
+    <view class="menu-item">客服中心</view>
+  </view>
+</view>
