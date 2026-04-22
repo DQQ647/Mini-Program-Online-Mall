@@ -1,62 +1,11 @@
-.container {
-  background-color: #f5f5f7;
-  min-height: 100vh;
-  padding: 40rpx 30rpx;
-}
-
-.user-card {
-  background: #fff;
-  border-radius: 24rpx;
-  padding: 40rpx;
-  display: flex;
-  align-items: center;
-  margin-bottom: 40rpx;
-  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.04);
-}
-.avatar {
-  width: 120rpx;
-  height: 120rpx;
-  border-radius: 50%;
-  background: #f2f2f7;
-}
-.nickname {
-  font-size: 36rpx;
-  font-weight: 500;
-  color: #1d1d1f;
-}
-.desc {
-  font-size: 26rpx;
-  color: #86868b;
-}
-
-.menu-box {
-  background: #fff;
-  border-radius: 24rpx;
-  overflow: hidden;
-  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.04);
-}
+/* 苹果风菜单 */
 .menu-item {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  padding: 32rpx 40rpx;
-  border-bottom: 1rpx solid #f2f2f7;
+  padding: 14px 0;
+  border-bottom: 1px solid #f2f2f7;
 }
 .menu-item:last-child {
   border-bottom: none;
-}
-.name {
-  flex: 1;
-  font-size: 28rpx;
-  color: #1d1d1f;
-}
-.arrow {
-  color: #86868b;
-}
-
-.logout-btn {
-  background: #fff;
-  color: #0071e3;
-  border-radius: 24rpx;
-  font-weight: 500;
-  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.04);
 }

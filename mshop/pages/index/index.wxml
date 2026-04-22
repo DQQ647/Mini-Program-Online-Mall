@@ -1,24 +1,24 @@
-<view class="container">
-  <swiper class="banner" indicator-dots circular autoplay style="border-radius:16px;overflow:hidden;margin:12px 16px;">
-    <swiper-item wx:for="{{bannerList}}" wx:key="id">
-      <image src="{{item.url}}" class="banner-img" style="width:100%;height:180px;display:block;"></image>
-    </swiper-item>
-  </swiper>
-
-  <view class="title" style="font-size:18px;font-weight:600;padding:0 16px;margin:16px 0;">全部产品</view>
-
-  <view class="goods-list">
-    <view class="item ios-card" wx:for="{{goodsList}}" wx:key="id" style="position:relative;">
-      <view class="tag">热卖</view>
-      <image src="{{item.image}}" class="item-img" style="width:100%;height:200px;border-radius:12px;display:block;"></image>
-      <view class="item-info" style="margin-top:12px;">
-        <view class="item-name" style="font-size:16px;font-weight:500;">{{item.name}}</view>
-        <view class="item-desc" style="color:#8e8e93;font-size:14px;margin-top:4px;">{{item.desc}}</view>
-        <view style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;">
-          <view class="item-price price">¥{{item.price}}</view>
-          <button class="add-btn ios-btn" bindtap="addCart" data-item="{{item}}" style="padding:8px 16px;font-size:14px;">加入购物车</button>
-        </view>
-      </view>
+<!-- 苹果风全屏滚动广告 -->
+<swiper class="ios-banner" indicator-dots circular autoplay style="height:280px;margin:0;">
+  <swiper-item>
+    <view style="width:100%;height:100%;background:#f5f5f7;display:flex;align-items:center;justify-content:center;flex-direction:column;">
+      <view style="font-size:22px;font-weight:600;">iPhone 16 Pro</view>
+      <view style="font-size:16px;color:#8e8e93;margin-top:4px;">钛金属设计 · 性能强劲</view>
+      <view style="margin-top:12px;color:#007aff;font-size:14px;">了解更多 ></view>
     </view>
-  </view>
-</view>
+  </swiper-item>
+  <swiper-item>
+    <view style="width:100%;height:100%;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;flex-direction:column;">
+      <view style="font-size:22px;font-weight:600;">MacBook Pro</view>
+      <view style="font-size:16px;color:#86868b;margin-top:4px;">强大，更进一步</view>
+      <view style="margin-top:12px;color:#007aff;font-size:14px;">了解更多 ></view>
+    </view>
+  </swiper-item>
+  <swiper-item>
+    <view style="width:100%;height:100%;background:#f2f2f7;display:flex;align-items:center;justify-content:center;flex-direction:column;">
+      <view style="font-size:22px;font-weight:600;">AirPods Pro</view>
+      <view style="font-size:16px;color:#8e8e93;margin-top:4px;">主动降噪 · 空间音频</view>
+      <view style="margin-top:12px;color:#007aff;font-size:14px;">了解更多 ></view>
+    </view>
+  </swiper-item>
+</swiper>

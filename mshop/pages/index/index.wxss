@@ -21,3 +21,8 @@
   color: #fff;
   border: none;
 }
+
+.ios-banner {
+  width: 100%;
+  background: #f5f5f7;
+}
