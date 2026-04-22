@@ -1,68 +1,68 @@
 <!--pages/index/index.wxml-->
 <view class="container">
 
-<!-- 苹果风格大轮播广告 -->
+<!-- 苹果官网风格轮播，三款产品 -->
 <swiper class="ios-swiper" indicator-dots autoplay circular>
+  <!-- iPhone 17 Pro -->
   <swiper-item>
-    <view class="ad-item ad-black">
-      <view class="ad-title">iPhone 16 Pro</view>
-      <view class="ad-sub">强力出圈</view>
-      <view class="ad-link">进一步了解 ></view>
-    </view>
+    <image 
+      src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=800&h=600&fit=crop" 
+      class="banner-img" 
+      mode="aspectFill"
+    ></image>
   </swiper-item>
 
+  <!-- MacBook Air -->
   <swiper-item>
-    <view class="ad-item ad-white">
-      <view class="ad-title">MacBook Pro</view>
-      <view class="ad-sub">强劲，更进一步</view>
-      <view class="ad-link">进一步了解 ></view>
-    </view>
+    <image 
+      src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800&h=600&fit=crop" 
+      class="banner-img" 
+      mode="aspectFill"
+    ></image>
   </swiper-item>
 
+  <!-- AirPods Pro 3 -->
   <swiper-item>
-    <view class="ad-item ad-blue">
-      <view class="ad-title">AirPods Pro</view>
-      <view class="ad-sub">沉浸听觉体验</view>
-      <view class="ad-link">进一步了解 ></view>
-    </view>
+    <image 
+      src="https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=800&h=600&fit=crop" 
+      class="banner-img" 
+      mode="aspectFill"
+    ></image>
   </swiper-item>
 </swiper>
 
-<!-- 功能入口 -->
-<view class="grid-box">
-  <view class="grid-item">
-    <text class="icon">📱</text>
-    <text>手机</text>
-  </view>
-  <view class="grid-item">
-    <text class="icon">💻</text>
-    <text>电脑</text>
-  </view>
-  <view class="grid-item">
-    <text class="icon">🎧</text>
-    <text>耳机</text>
-  </view>
-  <view class="grid-item">
-    <text class="icon">⌚</text>
-    <text>手表</text>
-  </view>
-</view>
-
-<!-- 推荐卡片区 -->
+<!-- 热门推荐 -->
 <view class="section">
   <view class="section-title">热门推荐</view>
 
-  <view class="ios-card card-big">
-    <view class="card-text">
+  <view class="ios-card card-big card-edu">
+    <image class="card-bg" src="https://picsum.photos/id/180/800/400" mode="aspectFill"></image>
+    <view class="card-text card-text-white">
       <view class="card-title">教育优惠</view>
       <view class="card-desc">学生专享福利</view>
     </view>
   </view>
 
-  <view class="ios-card card-big">
-    <view class="card-text">
+  <view class="ios-card card-big card-recycle">
+    <image class="card-bg" src="https://picsum.photos/id/160/800/400" mode="aspectFill"></image>
+    <view class="card-text card-text-dark">
       <view class="card-title">以旧换新</view>
       <view class="card-desc">高价回收</view>
+    </view>
+  </view>
+</view>
+
+<!-- 👇 这里是新增的底部区域，填补空白，不动你上面任何代码 -->
+<view class="section">
+  <view class="section-title">专属服务</view>
+  <view class="service-box">
+    <view class="service-card">
+      <text class="service-title">官方正品</text>
+      <text class="service-sub">全国联保</text>
+    </view>
+    <view class="service-card">
+      <text class="service-title">送货上门</text>
+      <text class="service-sub">极速配送</text>
     </view>
   </view>
 </view>
