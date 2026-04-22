@@ -46,6 +46,7 @@
   font-size: 32rpx;
   font-weight: bold;
   margin-bottom: 20rpx;
+  color: #1d1d1f;
 }
 
 .ios-card {
@@ -55,6 +56,7 @@
   margin-bottom: 20rpx;
   overflow: hidden;
   position: relative;
+  box-shadow: 0 4rpx 15rpx rgba(0, 0, 0, 0.05);
 }
 .card-big {
   height: 200rpx;
@@ -92,7 +94,7 @@
   opacity: 0.9;
 }
 
-/* 👇 以下是新增底部样式，不影响你原有任何样式 */
+/* 专属服务 */
 .service-box {
   display: flex;
   justify-content: space-between;
@@ -104,12 +106,14 @@
   border-radius: 20rpx;
   padding: 30rpx;
   text-align: center;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.04);
 }
 .service-title {
   font-size: 28rpx;
   font-weight: bold;
   display: block;
   margin-bottom: 8rpx;
+  color: #1d1d1f;
 }
 .service-sub {
   font-size: 22rpx;

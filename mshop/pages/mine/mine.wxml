@@ -1,0 +1,53 @@
+<!--pages/mine/mine.wxml-->
+<view class="mine-page">
+
+<!-- 用户信息卡片 -->
+<view class="user-card">
+  <image class="avatar" src="{{userInfo.avatarUrl || '/images/default-avatar.png'}}"></image>
+  <view class="username">{{userInfo.nickName || '点击登录'}}</view>
+  <view class="user-desc">Apple Store 会员用户</view>
+</view>
+
+<!-- 订单模块 -->
+<view class="section">
+  <view class="section-title">我的订单</view>
+  <view class="order-box">
+    <view class="order-item">
+      <text class="icon">📦</text>
+      <text class="label">待发货</text>
+    </view>
+    <view class="order-item">
+      <text class="icon">🚚</text>
+      <text class="label">待收货</text>
+    </view>
+    <view class="order-item">
+      <text class="icon">✅</text>
+      <text class="label">已完成</text>
+    </view>
+    <view class="order-item">
+      <text class="icon">🔍</text>
+      <text class="label">全部订单</text>
+    </view>
+  </view>
+</view>
+
+<!-- 功能菜单 -->
+<view class="menu-list">
+  <view class="menu-item">
+    <text>收货地址</text>
+    <text class="arrow">></text>
+  </view>
+  <view class="menu-item">
+    <text>联系客服</text>
+    <text class="arrow">></text>
+  </view>
+  <view class="menu-item">
+    <text>关于我们</text>
+    <text class="arrow">></text>
+  </view>
+  <view class="menu-item red" bindtap="logout">
+    <text>退出登录</text>
+  </view>
+</view>
+
+</view>

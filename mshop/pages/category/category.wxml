@@ -16,7 +16,7 @@
       <image src="{{item.image}}" class="goods-img" mode="aspectFit"></image>
       <view class="goods-name">{{item.name}}</view>
       <view class="goods-price">¥{{item.price}}</view>
-      <button class="add-cart">加入购物车</button>
+      <button class="add-cart" bindtap="addCart" data-item="{{item}}">加入购物车</button>
     </view>
   </scroll-view>
 </view>
