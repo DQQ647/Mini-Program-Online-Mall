@@ -1,41 +1,19 @@
-<view class="cart-container">
-  <!-- 空购物车提示 -->
-  <view class="empty-cart" wx:if="{{cartList.length === 0}}">
-    <image src="/images/cart.png" class="empty-icon" mode="aspectFit" />
-    <text class="empty-text">购物车是空的，快去挑选商品吧~</text>
+<!--pages/cart/cart.wxml-->
+<view class="container">
+  <view wx:if="{{cartList.length === 0}}" class="empty-box">
+    <view class="empty-text">购物车是空的</view>
+    <view class="empty-desc">添加商品后显示在这里</view>
   </view>
 
-  <!-- 购物车商品列表 -->
-  <view class="cart-list" wx:else>
-    <view class="cart-item" wx:for="{{cartList}}" wx:key="id">
-      <!-- 选择框 -->
-      <checkbox class="select-checkbox" checked="{{item.selected}}" bindtap="selectItem" data-id="{{item.id}}" />
-      <!-- 商品图片 -->
-      <image class="goods-img" src="{{item.image}}" mode="aspectFill" />
-      <!-- 商品信息 -->
-      <view class="goods-info">
-        <text class="goods-name">{{item.name}}</text>
-        <text class="goods-price">¥{{item.price}}</text>
-        <!-- 数量控制 -->
-        <view class="count-control">
-          <button class="count-btn" bindtap="minusCount" data-id="{{item.id}}">-</button>
-          <text class="count">{{item.count}}</text>
-          <button class="count-btn" bindtap="plusCount" data-id="{{item.id}}">+</button>
+  <view wx:else>
+    <view class="ios-card" wx:for="{{cartList}}" wx:key="id">
+      <view style="display:flex;align-items:center;">
+        <image src="{{item.image}}" style="width:120rpx;height:120rpx;border-radius:16rpx;"></image>
+        <view style="margin-left:20rpx;flex:1;">
+          <view style="font-size:28rpx;">{{item.name}}</view>
+          <view style="color:#007aff;font-size:28rpx;margin-top:10rpx;">¥{{item.price}}</view>
         </view>
       </view>
-      <!-- 删除按钮 -->
-      <button class="del-btn" bindtap="delGoods" data-id="{{item.id}}">删除</button>
     </view>
-  </view>
-
-  <!-- 底部结算栏 -->
-  <view class="cart-footer" wx:if="{{cartList.length > 0}}">
-    <checkbox class="select-all-checkbox" checked="{{isAllSelected}}" bindtap="selectAll" />
-    <text class="select-all-text">全选</text>
-    <view class="total-info">
-      <text class="total-text">合计：<text class="total-price">¥{{totalPrice}}</text></text>
-      <text class="count-text">共{{totalCount}}件</text>
-    </view>
-    <button class="settle-btn" bindtap="goSettle">结算</button>
   </view>
 </view>
