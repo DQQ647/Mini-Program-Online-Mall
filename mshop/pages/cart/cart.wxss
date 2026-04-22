@@ -1,33 +1,105 @@
 .container {
   background: #f5f5f7;
   min-height: 100vh;
-  padding: 20rpx;
+  padding-bottom: 120rpx;
 }
-.empty-box {
+
+.empty {
   text-align: center;
-  margin-top: 200rpx;
+  padding-top: 300rpx;
+  font-size: 28rpx;
+  color: #666;
 }
-.empty-text {
-  font-size: 30rpx;
-  color: #1d1d1f;
-}
-.empty-desc {
-  font-size: 24rpx;
-  color: #888;
-  margin-top: 10rpx;
-}
-.ios-card {
+
+.item-box {
   background: #fff;
-  border-radius: 24rpx;
+  margin: 20rpx;
+  border-radius: 20rpx;
   padding: 30rpx;
-  margin-bottom: 20rpx;
-  box-shadow: 0 4rpx 10rpx rgba(0,0,0,0.05);
+  display: flex;
+  align-items: center;
 }
-.del-btn {
-  background: #ff3b30;
+
+.check {
+  width: 40rpx;
+  height: 40rpx;
+  border: 2rpx solid #ddd;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20rpx;
+}
+
+.check.active {
+  background: #0071e3;
+  border-color: #0071e3;
   color: #fff;
   font-size: 24rpx;
-  border-radius: 12rpx;
-  padding: 10rpx 20rpx;
-  border: none;
+}
+
+.img {
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 16rpx;
+  margin-right: 20rpx;
+}
+
+.info {
+  flex: 1;
+}
+
+.name {
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+
+.price {
+  color: #0071e3;
+  font-size: 28rpx;
+}
+
+.del {
+  color: #ff3b30;
+  font-size: 26rpx;
+  padding: 10rpx;
+}
+
+/* 底部栏 */
+.toolbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100rpx;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  border-top: 1rpx solid #eee;
+}
+
+.all-check {
+  display: flex;
+  align-items: center;
+}
+
+.total {
+  font-size: 28rpx;
+}
+
+.total text {
+  color: #ff3b30;
+  font-weight: bold;
+}
+
+.pay {
+  background: #0071e3;
+  color: #fff;
+  padding: 20rpx 40rpx;
+  border-radius: 50rpx;
+  font-size: 28rpx;
 }
