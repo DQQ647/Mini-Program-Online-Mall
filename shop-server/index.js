@@ -1,46 +1,34 @@
-const express = require('express');
-const app = express();
-const db = require('./SQLConnect.js');
-const cors = require('cors');
-
-app.use(cors());
-app.use(express.json());
-
-// 静态文件托管，让图片能访问
-app.use('/images', express.static('public/images'));
-
-// 1. 获取轮播图接口
-app.get('/getBanner', (req, res) => {
-  db.query('SELECT * FROM banner', (err, results) => {
-    if (err) {
-      return res.status(500).json({ error: err.message });
-    }
-    res.json(results);
-  });
-});
-
-// 2. 获取商品列表接口
+// 商品列表
 app.get('/getGoods', (req, res) => {
   db.query('SELECT * FROM goods', (err, results) => {
-    if (err) {
-      return res.status(500).json({ error: err.message });
-    }
+    if (err) return res.status(500).json({ error: err.message });
     res.json(results);
   });
 });
 
-// 3. 获取商品详情接口
-app.get('/getGoodsDetail', (req, res) => {
+// 加入购物车
+app.get('/addCart', (req, res) => {
+  const { title, image, price, currentID } = req.query;
+  const sql = 'INSERT INTO cart (title, image, price, currentID) VALUES (?, ?, ?, ?)';
+  db.query(sql, [title, image, price, currentID], (err, result) => {
+    if (err) return res.json({ code: 0, msg: err });
+    res.json({ code: 1, msg: '加入成功' });
+  });
+});
+
+// 获取购物车
+app.get('/getCart', (req, res) => {
+  db.query('SELECT * FROM cart', (err, results) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(results);
+  });
+});
+
+// 删除购物车
+app.get('/deleteCart', (req, res) => {
   const id = req.query.id;
-  db.query('SELECT * FROM goodsdetails WHERE id = ?', [id], (err, results) => {
-    if (err) {
-      return res.status(500).json({ error: err.message });
-    }
-    res.json(results);
+  db.query('DELETE FROM cart WHERE id = ?', [id], (err, results) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json({ success: true });
   });
-});
-
-const port = 3001;
-app.listen(port, () => {
-  console.log(`🚀 服务器运行在 http://localhost:${port}`);
 });

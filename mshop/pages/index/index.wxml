@@ -1,31 +1,40 @@
-<view class="container">
-  <!-- 轮播 -->
-  <swiper class="banner" indicator-dots autoplay circular>
+<view class="home-wrap">
+  <!-- 顶部轮播广告 -->
+  <swiper class="ad-swiper" indicator-dots autoplay circular interval="3000">
     <swiper-item wx:for="{{swiperList}}" wx:key="id">
-      <image src="{{item.url}}" mode="aspectFill" />
+      <image src="{{item.url}}" mode="aspectFill" class="ad-img" />
     </swiper-item>
   </swiper>
 
-  <!-- 以旧换新卡片 -->
-  <view class="card-box" bindtap="goToRecycle">
-    <view class="card-text">
-      <text class="title">以旧换新</text>
-      <text class="desc">高价回收旧设备 · 一站式便捷服务</text>
+  <!-- 苹果风分割标题 -->
+  <view class="title-line">
+    <text class="title-text">Apple 精选数码</text>
+  </view>
+
+  <!-- 单品广告区块 - iPhone -->
+  <view class="ad-card card-1">
+    <view class="ad-text">
+      <text class="ad-main">iPhone 17 Pro</text>
+      <text class="ad-sub">超强芯片 · 专业影像系统</text>
     </view>
   </view>
 
-  <!-- 商品列表 → 左右结构 -->
-  <view class="goods-title">精选商品</view>
-  <view class="goods-list">
-    <view class="item" wx:for="{{goodsList}}" wx:key="id" bindtap="goDetail" data-id="{{item.id}}">
-      <!-- 左：图片 -->
-      <image src="{{item.url}}" class="item-img" mode="aspectFill" />
-      
-      <!-- 右：文字信息 -->
-      <view class="item-info">
-        <text class="item-name">{{item.title}}</text>
-        <text class="item-price">¥{{item.price}}</text>
-      </view>
+  <!-- 单品广告区块 - 电脑 -->
+  <view class="ad-card card-2">
+    <view class="ad-text">
+      <text class="ad-main">MacBook Air</text>
+      <text class="ad-sub">轻薄机身 · 超长续航</text>
     </view>
   </view>
+
+  <!-- 单品广告区块 - 配件 -->
+  <view class="ad-card card-3">
+    <view class="ad-text">
+      <text class="ad-main">智能配件全家桶</text>
+      <text class="ad-sub">氮化镓快充 · 无线外设</text>
+    </view>
+  </view>
+
+  <!-- 底部留白 -->
+  <view class="space"></view>
 </view>

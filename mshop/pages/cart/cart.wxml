@@ -1,44 +1,21 @@
 <view class="container">
-  <!-- 空购物车 -->
-  <view wx:if="{{cartList.length === 0}}" class="empty">
-    <view>购物车是空的</view>
-  </view>
-
-  <!-- 有商品 -->
-  <view wx:else>
-    <view class="item-box" wx:for="{{cartList}}" wx:key="index">
-      <!-- 选择框 -->
-      <view class="check {{selectedList[index] ? 'active' : ''}}" bindtap="selectItem" data-index="{{index}}">
-        <text wx:if="{{selectedList[index]}}">✔</text>
-      </view>
-
-      <!-- 商品图片 -->
+  <scroll-view class="cart-list" scroll-y>
+    <view class="item" wx:for="{{cartList}}" wx:key="id">
       <image src="{{item.image}}" class="img"></image>
-
-      <!-- 信息 -->
       <view class="info">
-        <view class="name">{{item.name}}</view>
-        <view class="price">¥{{item.price}}</view>
+        <text class="title">{{item.title}}</text>
+        <text class="price">¥{{item.price}}</text>
       </view>
-
-      <!-- 删除 -->
-      <view class="del" bindtap="delItem" data-index="{{index}}">删除</view>
-    </view>
-  </view>
-
-  <!-- 底部工具栏 -->
-  <view class="toolbar">
-    <view class="all-check" bindtap="selectAll">
-      <view class="check {{isAllSelected ? 'active' : ''}}">
-        <text wx:if="{{isAllSelected}}">✔</text>
-      </view>
-      <text>全选</text>
+      <text class="del" bindtap="del" data-id="{{item.id}}">删除</text>
     </view>
 
-    <view class="total">
-      合计：<text>¥{{totalPrice}}</text>
+    <view class="empty" wx:if="{{cartList.length == 0}}">
+      购物车为空
     </view>
+  </scroll-view>
 
-    <view class="pay" bindtap="checkout">结算</view>
+  <view class="bottom">
+    <view class="total">合计：¥{{total}}</view>
+    <button class="buy">去结算</button>
   </view>
 </view>
