@@ -1,0 +1,14 @@
+<view class="container">
+  <view class="top-box">
+    <image class="top-img" src="/images/tab/bg.jpg"></image>
+    <view class="title">Apple 以旧换新</view>
+    <view class="desc">高价回收你的设备，立即抵扣新机款</view>
+  </view>
+
+  <view class="list">
+    <view class="item">iPhone 手机回收</view>
+    <view class="item">iPad 平板回收</view>
+    <view class="item">Mac 电脑回收</view>
+    <view class="item">Watch 手表回收</view>
+  </view>
+</view>

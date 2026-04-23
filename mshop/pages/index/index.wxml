@@ -43,8 +43,9 @@
     </view>
   </view>
 
-  <view class="ios-card card-big card-recycle">
-    <image class="card-bg" src="https://picsum.photos/id/160/800/400" mode="aspectFill"></image>
+  <!-- 以旧换新 加了点击事件 bindtap="goToRecycle" -->
+  <view class="ios-card card-big card-recycle" bindtap="goToRecycle">
+    <image class="card-bg" src="/images/tab/page.jpg" mode="aspectFill"></image>
     <view class="card-text card-text-dark">
       <view class="card-title">以旧换新</view>
       <view class="card-desc">高价回收</view>

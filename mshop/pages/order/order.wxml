@@ -1,0 +1,40 @@
+<view class="container">
+  <view class="order-list">
+    <view 
+      class="order-item" 
+      wx:for="{{orderList}}" 
+      wx:key="id"
+      data-id="{{item.id}}"
+      bindtap="onOrderTap"
+    >
+      <!-- 订单头部：订单号 + 状态 -->
+      <view class="order-header">
+        <text class="order-id">订单号：{{item.orderNo}}</text>
+        <text class="order-status {{item.status == 0 ? 'wait' : item.status == 1 ? 'ing' : 'done'}}">
+          {{item.statusText}}
+        </text>
+      </view>
+
+      <!-- 商品列表：带产品图片 -->
+      <view class="goods-list">
+        <view class="goods-item" wx:for="{{item.goodsList}}" wx:for-item="goods" wx:key="goods.id">
+          <image class="goods-img" src="{{goods.img}}" mode="aspectFill"></image>
+          <view class="goods-info">
+            <text class="goods-name">{{goods.name}}</text>
+            <text class="goods-price">¥{{goods.price}}</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 订单底部：总价 -->
+      <view class="order-footer">
+        <text class="total">共{{item.goodsList.length}}件商品 合计：¥{{item.totalPrice}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty" wx:if="{{orderList.length == 0}}">
+    <image class="empty-img" src="/images/tab/empty.png" mode="aspectFill"></image>
+    <text class="empty-text">暂无订单</text>
+  </view>
+</view>

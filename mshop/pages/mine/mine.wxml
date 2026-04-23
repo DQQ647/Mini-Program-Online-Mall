@@ -1,10 +1,12 @@
 <!--pages/mine/mine.wxml-->
 <view class="mine-page">
 
-<!-- 用户信息卡片 -->
-<view class="user-card">
-  <image class="avatar" src="{{userInfo.avatarUrl || '/images/default-avatar.png'}}"></image>
-  <view class="username">{{userInfo.nickName || '点击登录'}}</view>
+<!-- 用户信息卡片 点击登录 -->
+<view class="user-card" bindtap="getUserProfile">
+  <!-- 这里固定显示你自己上传的图片 -->
+  <image class="avatar" src="/images/tab/touxiang.jpg"></image>
+
+  <view class="username">{{userInfo ? userInfo.nickName : '点击登录'}}</view>
   <view class="user-desc">Apple Store 会员用户</view>
 </view>
 
@@ -12,19 +14,19 @@
 <view class="section">
   <view class="section-title">我的订单</view>
   <view class="order-box">
-    <view class="order-item">
+    <view class="order-item" bindtap="goToOrderList" data-status="0">
       <text class="icon">📦</text>
       <text class="label">待发货</text>
     </view>
-    <view class="order-item">
+    <view class="order-item" bindtap="goToOrderList" data-status="1">
       <text class="icon">🚚</text>
       <text class="label">待收货</text>
     </view>
-    <view class="order-item">
+    <view class="order-item" bindtap="goToOrderList" data-status="2">
       <text class="icon">✅</text>
       <text class="label">已完成</text>
     </view>
-    <view class="order-item">
+    <view class="order-item" bindtap="goToOrderList" data-status="-1">
       <text class="icon">🔍</text>
       <text class="label">全部订单</text>
     </view>
@@ -33,15 +35,15 @@
 
 <!-- 功能菜单 -->
 <view class="menu-list">
-  <view class="menu-item">
+  <view class="menu-item" bindtap="goToAddress">
     <text>收货地址</text>
     <text class="arrow">></text>
   </view>
-  <view class="menu-item">
+  <view class="menu-item" bindtap="goToService">
     <text>联系客服</text>
     <text class="arrow">></text>
   </view>
-  <view class="menu-item">
+  <view class="menu-item" bindtap="goToAbout">
     <text>关于我们</text>
     <text class="arrow">></text>
   </view>

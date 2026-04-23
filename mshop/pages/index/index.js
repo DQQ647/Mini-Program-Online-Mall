@@ -49,6 +49,13 @@ Page({
 
   },
 
+  // 👉 以旧换新 跳转
+  goToRecycle() {
+    wx.navigateTo({
+      url: '/pages/recycle/recycle'
+    })
+  },
+
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */

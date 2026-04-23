@@ -1,0 +1,9 @@
+<view class="container">
+  <view class="card">
+    <image class="icon" src="/images/tab/kefu.png"></image>
+    <text class="title">官方客服</text>
+    <text class="desc">工作时间：9:00 - 22:00</text>
+    <view class="phone">400-666-8888</view>
+    <button class="call-btn" bindtap="makeCall">立即联系客服</button>
+  </view>
+</view>

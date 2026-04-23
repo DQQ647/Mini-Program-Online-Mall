@@ -1,0 +1,9 @@
+<view class="container">
+  <view class="about-card">
+    <image class="logo" src="/images/tab/touxiang.jpg"></image>
+    <text class="title">Apple Store 商城</text>
+    <text class="info">版本：1.0.0</text>
+    <text class="info">一款精美简洁的小程序商城Demo</text>
+    <text class="info">© 2026 版权所有</text>
+  </view>
+</view>

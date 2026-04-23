@@ -3,14 +3,18 @@
     "pages/index/index",
     "pages/category/category",
     "pages/cart/cart",
-    "pages/mine/mine"
+    "pages/mine/mine",
+    "pages/order/order",
+    "pages/address/address",
+    "pages/service/service",
+    "pages/about/about",
+    "pages/recycle/recycle"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#ffffff",
-    "navigationBarTitleText": "Apple Store 苹果商城",
-    "navigationBarTextStyle": "black",
-    "backgroundColor": "#f5f5f7"
+    "navigationBarBackgroundColor": "#0071e3",
+    "navigationBarTitleText": "Apple Store",
+    "navigationBarTextStyle": "white"
   },
   "tabBar": {
     "color": "#86868b",
@@ -36,6 +40,7 @@
       }
     ]
   },
+  "style": "v2",
   "sitemapLocation": "sitemap.json",
   "lazyCodeLoading": "requiredComponents"
 }
