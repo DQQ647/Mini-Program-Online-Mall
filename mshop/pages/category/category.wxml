@@ -14,7 +14,13 @@
 
   <!-- 右侧商品 -->
   <view class="right-goods">
-    <view class="goods-card" wx:for="{{goodsList}}" wx:key="id">
+    <view 
+      class="goods-card" 
+      wx:for="{{goodsList}}" 
+      wx:key="id"
+      bindtap="goDetail"
+      data-id="{{item.id}}"
+    >
       <image src="{{item.url}}" class="goods-img"></image>
       <view class="goods-name">{{item.name}}</view>
       <view class="goods-price">¥{{item.price}}</view>
