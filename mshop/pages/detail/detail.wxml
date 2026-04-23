@@ -1,15 +1,6 @@
 <view class="container">
-  <!-- 商品图片 -->
-  <image class="detail-img" src="{{detailData.image}}" mode="widthFix"></image>
-
-  <!-- 商品信息 -->
-  <view class="info">
-    <view class="title">{{detailData.name}}</view>
-    <view class="price">¥{{detailData.price}}</view>
-  </view>
-
-  <!-- 底部操作栏 -->
-  <view class="footer">
-    <button class="add-cart" bindtap="handleAddCart">加入购物车</button>
-  </view>
+  <image class="top-img" src="{{info.topimage}}"></image>
+  <view class="title">{{info.title}}</view>
+  <view class="price">¥{{info.price}}</view>
+  <image class="content" src="{{info.details}}"></image>
 </view>

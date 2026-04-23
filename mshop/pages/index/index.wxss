@@ -1,121 +1,92 @@
+page {
+  background: #f2f2f7;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
 .container {
-  background: #f5f5f7;
-  min-height: 100vh;
-  padding-bottom: 40rpx;
+  padding: 0 20rpx;
 }
 
-/* 轮播容器 */
-.ios-swiper {
+/* 轮播 */
+.banner {
   width: 100%;
-  height: 400rpx;
+  height: 380rpx;
+  border-radius: 20rpx;
+  overflow: hidden;
+  margin: 20rpx 0;
 }
-
-/* 轮播图片 */
-.banner-img {
+.banner image {
   width: 100%;
   height: 100%;
 }
 
-/* 轮播文字 */
-.banner-text {
-  position: absolute;
-  bottom: 40rpx;
-  left: 0;
-  right: 0;
-  text-align: center;
-  color: #fff;
-}
-.banner-dark {
-  color: #1d1d1f;
-}
-.banner-title {
-  font-size: 36rpx;
-  font-weight: bold;
-}
-.banner-sub {
-  font-size: 24rpx;
-  margin-top: 10rpx;
-  opacity: 0.9;
-}
-
-/* 推荐卡片 */
-.section {
-  padding: 20rpx;
-}
-.section-title {
-  font-size: 32rpx;
-  font-weight: bold;
-  margin-bottom: 20rpx;
-  color: #1d1d1f;
-}
-
-.ios-card {
+/* 苹果卡片 */
+.card-box {
   background: #fff;
-  border-radius: 24rpx;
-  padding: 0;
-  margin-bottom: 20rpx;
-  overflow: hidden;
-  position: relative;
-  box-shadow: 0 4rpx 15rpx rgba(0, 0, 0, 0.05);
+  border-radius: 22rpx;
+  padding: 35rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 6rpx 20rpx rgba(0,0,0,0.05);
 }
-.card-big {
-  height: 200rpx;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.card-bg {
-  position: absolute;
-  top:0; left:0;
-  width:100%; height:100%;
-  opacity:0.8;
-}
-
-/* 卡片文字 */
-.card-text {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-}
-.card-text-white {
-  color: #fff;
-}
-.card-text-dark {
-  color: #1d1d1f;
-}
-.card-title {
+.card-text .title {
   font-size: 32rpx;
-  font-weight: bold;
+  font-weight: 600;
+  color: #000;
 }
-.card-desc {
+.card-text .desc {
   font-size: 24rpx;
-  margin-top: 10rpx;
-  opacity: 0.9;
+  color: #8e8e93;
+  margin-top: 8rpx;
+  display: block;
 }
 
-/* 专属服务 */
-.service-box {
-  display: flex;
-  justify-content: space-between;
-  gap: 20rpx;
+/* 商品标题 */
+.goods-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  margin-bottom: 20rpx;
+  color: #1c1c1e;
 }
-.service-card {
-  flex: 1;
+
+/* 左右结构商品列表 */
+.goods-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.item {
   background: #fff;
   border-radius: 20rpx;
-  padding: 30rpx;
-  text-align: center;
-  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.04);
+  padding: 20rpx;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4rpx 15rpx rgba(0,0,0,0.04);
 }
-.service-title {
+
+/* 左边图片 */
+.item-img {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 16rpx;
+  background: #f9f9f9;
+  margin-right: 20rpx;
+}
+
+/* 右边文字 */
+.item-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10rpx;
+}
+.item-name {
+  font-size: 26rpx;
+  color: #1c1c1e;
+  line-height: 1.4;
+}
+.item-price {
   font-size: 28rpx;
-  font-weight: bold;
-  display: block;
-  margin-bottom: 8rpx;
-  color: #1d1d1f;
-}
-.service-sub {
-  font-size: 22rpx;
-  color: #666;
+  font-weight: 600;
+  color: #007aff;
 }

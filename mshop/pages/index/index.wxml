@@ -1,71 +1,31 @@
-<!--pages/index/index.wxml-->
 <view class="container">
+  <!-- 轮播 -->
+  <swiper class="banner" indicator-dots autoplay circular>
+    <swiper-item wx:for="{{swiperList}}" wx:key="id">
+      <image src="{{item.url}}" mode="aspectFill" />
+    </swiper-item>
+  </swiper>
 
-<!-- 苹果官网风格轮播，三款产品 -->
-<swiper class="ios-swiper" indicator-dots autoplay circular>
-  <!-- iPhone 17 Pro -->
-  <swiper-item>
-    <image 
-      src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=800&h=600&fit=crop" 
-      class="banner-img" 
-      mode="aspectFill"
-    ></image>
-  </swiper-item>
-
-  <!-- MacBook Air -->
-  <swiper-item>
-    <image 
-      src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800&h=600&fit=crop" 
-      class="banner-img" 
-      mode="aspectFill"
-    ></image>
-  </swiper-item>
-
-  <!-- AirPods Pro 3 -->
-  <swiper-item>
-    <image 
-      src="https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=800&h=600&fit=crop" 
-      class="banner-img" 
-      mode="aspectFill"
-    ></image>
-  </swiper-item>
-</swiper>
-
-<!-- 热门推荐 -->
-<view class="section">
-  <view class="section-title">热门推荐</view>
-
-  <view class="ios-card card-big card-edu">
-    <image class="card-bg" src="https://picsum.photos/id/180/800/400" mode="aspectFill"></image>
-    <view class="card-text card-text-white">
-      <view class="card-title">教育优惠</view>
-      <view class="card-desc">学生专享福利</view>
+  <!-- 以旧换新卡片 -->
+  <view class="card-box" bindtap="goToRecycle">
+    <view class="card-text">
+      <text class="title">以旧换新</text>
+      <text class="desc">高价回收旧设备 · 一站式便捷服务</text>
     </view>
   </view>
 
-  <!-- 以旧换新 加了点击事件 bindtap="goToRecycle" -->
-  <view class="ios-card card-big card-recycle" bindtap="goToRecycle">
-    <image class="card-bg" src="/images/tab/page.jpg" mode="aspectFill"></image>
-    <view class="card-text card-text-dark">
-      <view class="card-title">以旧换新</view>
-      <view class="card-desc">高价回收</view>
+  <!-- 商品列表 → 左右结构 -->
+  <view class="goods-title">精选商品</view>
+  <view class="goods-list">
+    <view class="item" wx:for="{{goodsList}}" wx:key="id" bindtap="goDetail" data-id="{{item.id}}">
+      <!-- 左：图片 -->
+      <image src="{{item.url}}" class="item-img" mode="aspectFill" />
+      
+      <!-- 右：文字信息 -->
+      <view class="item-info">
+        <text class="item-name">{{item.title}}</text>
+        <text class="item-price">¥{{item.price}}</text>
+      </view>
     </view>
   </view>
-</view>
-
-<!-- 👇 这里是新增的底部区域，填补空白，不动你上面任何代码 -->
-<view class="section">
-  <view class="section-title">专属服务</view>
-  <view class="service-box">
-    <view class="service-card">
-      <text class="service-title">官方正品</text>
-      <text class="service-sub">全国联保</text>
-    </view>
-    <view class="service-card">
-      <text class="service-title">送货上门</text>
-      <text class="service-sub">极速配送</text>
-    </view>
-  </view>
-</view>
-
 </view>

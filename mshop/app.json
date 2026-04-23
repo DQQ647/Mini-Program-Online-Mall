@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/details/details",
     "pages/category/category",
     "pages/cart/cart",
     "pages/mine/mine",
@@ -13,7 +14,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#0071e3",
-    "navigationBarTitleText": "Apple Store",
+    "navigationBarTitleText": "数码精选商城",
     "navigationBarTextStyle": "white"
   },
   "tabBar": {
