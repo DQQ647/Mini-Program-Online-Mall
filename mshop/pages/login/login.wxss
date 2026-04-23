@@ -1,0 +1,24 @@
+page{
+  background:#f7f3f0;
+}
+.container{
+  padding:80rpx 30rpx;
+}
+.login-card{
+  background:#fff;
+  border-radius:32rpx;
+  padding:60rpx 40rpx;
+  text-align:center;
+}
+.title{
+  font-size:36rpx;
+  font-weight:bold;
+  margin-bottom:60rpx;
+}
+.login-btn{
+  background:#0071e3;
+  color:#fff;
+  border-radius:20rpx;
+  padding:25rpx 0;
+  font-size:28rpx;
+}

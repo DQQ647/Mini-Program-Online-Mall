@@ -2,12 +2,12 @@
 
 <!-- 顶部用户区域 -->
 <view class="user-card">
-  <!-- 未登录：可点击按钮 -->
-  <view wx:if="{{!isLogin}}" bindtap="goLogin">
+  <!-- 未登录：修复点击响应，用 catchtap 兜底 -->
+  <view wx:if="{{!isLogin}}" bindtap="goLogin" catchtap="goLogin">
     <text class="login-text">点击登录</text>
   </view>
 
-  <!-- 已登录：显示头像 + 名字 -->
+  <!-- 已登录：只在登录时显示头像，不登录时不显示 -->
   <view wx:else class="user-info">
     <image src="{{userInfo.avatarUrl}}" class="avatar"></image>
     <text class="nickname">{{userInfo.nickName}}</text>

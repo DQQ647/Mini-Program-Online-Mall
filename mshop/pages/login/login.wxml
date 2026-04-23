@@ -1,0 +1,8 @@
+<view class="container">
+  <view class="login-card">
+    <view class="title">用户登录</view>
+    <button class="login-btn" bindtap="login">
+      微信授权登录
+    </button>
+  </view>
+</view>

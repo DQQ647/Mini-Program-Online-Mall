@@ -9,7 +9,8 @@
     "pages/address/address",
     "pages/service/service",
     "pages/about/about",
-    "pages/recycle/recycle"
+    "pages/recycle/recycle",
+    "pages/login/login"
   ],
   "window": {
     "backgroundTextStyle": "dark",
