@@ -1,54 +1,72 @@
-<!--pages/mine/mine.wxml-->
-<view class="mine-page">
+<view class="container">
 
-<!-- 用户信息卡片 点击登录 -->
-<view class="user-card" bindtap="getUserProfile">
-  <!-- 这里固定显示你自己上传的图片 -->
-  <image class="avatar" src="/images/tab/touxiang.jpg"></image>
+<!-- 顶部用户区域 -->
+<view class="user-card">
+  <!-- 未登录：可点击按钮 -->
+  <view wx:if="{{!isLogin}}" bindtap="goLogin">
+    <text class="login-text">点击登录</text>
+  </view>
 
-  <view class="username">{{userInfo ? userInfo.nickName : '点击登录'}}</view>
+  <!-- 已登录：显示头像 + 名字 -->
+  <view wx:else class="user-info">
+    <image src="{{userInfo.avatarUrl}}" class="avatar"></image>
+    <text class="nickname">{{userInfo.nickName}}</text>
+  </view>
 </view>
 
-<!-- 订单模块 -->
-<view class="section">
-  <view class="section-title">我的订单</view>
-  <view class="order-box">
-    <view class="order-item" bindtap="goToOrderList" data-status="0">
+<!-- 我的订单 -->
+<view class="box">
+  <view class="box-title">我的订单</view>
+  <view class="order-list">
+    <view class="item">
       <text class="icon">📦</text>
-      <text class="label">待发货</text>
+      <text>待发货</text>
     </view>
-    <view class="order-item" bindtap="goToOrderList" data-status="1">
+    <view class="item">
       <text class="icon">🚚</text>
-      <text class="label">待收货</text>
+      <text>待收货</text>
     </view>
-    <view class="order-item" bindtap="goToOrderList" data-status="2">
+    <view class="item">
       <text class="icon">✅</text>
-      <text class="label">已完成</text>
+      <text>已完成</text>
     </view>
-    <view class="order-item" bindtap="goToOrderList" data-status="-1">
-      <text class="icon">🔍</text>
-      <text class="label">全部订单</text>
+    <view class="item">
+      <text class="icon">📋</text>
+      <text>全部订单</text>
     </view>
   </view>
 </view>
 
 <!-- 功能菜单 -->
-<view class="menu-list">
-  <view class="menu-item" bindtap="goToAddress">
-    <text>收货地址</text>
-    <text class="arrow">></text>
+<view class="menu-box">
+  <view class="menu-item" bindtap="goAddress">
+    <view class="menu-left">
+      <text class="menu-icon">📍</text>
+      <text class="menu-title">收货地址</text>
+    </view>
+    <text class="menu-arrow">></text>
   </view>
-  <view class="menu-item" bindtap="goToService">
-    <text>联系客服</text>
-    <text class="arrow">></text>
+
+  <view class="menu-item" bindtap="goService">
+    <view class="menu-left">
+      <text class="menu-icon">💬</text>
+      <text class="menu-title">联系客服</text>
+    </view>
+    <text class="menu-arrow">></text>
   </view>
-  <view class="menu-item" bindtap="goToAbout">
-    <text>关于我们</text>
-    <text class="arrow">></text>
+
+  <view class="menu-item" bindtap="goAbout">
+    <view class="menu-left">
+      <text class="menu-icon">ℹ️</text>
+      <text class="menu-title">关于我们</text>
+    </view>
+    <text class="menu-arrow">></text>
   </view>
-  <view class="menu-item red" bindtap="logout">
-    <text>退出登录</text>
-  </view>
+</view>
+
+<!-- 退出登录 -->
+<view wx:if="{{isLogin}}" class="logout" bindtap="logout">
+  退出登录
 </view>
 
 </view>
