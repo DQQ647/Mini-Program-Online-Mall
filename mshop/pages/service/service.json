@@ -1,3 +1,5 @@
 {
-  "navigationBarTitleText": "联系客服"
+  "navigationBarTitleText": "联系客服",
+  "navigationBarTextStyle": "black",
+  "navigationBarBackgroundColor": "#f7f3f0"
 }

@@ -1,39 +1,61 @@
-.container{
-  background: #f5f5f7;
-  min-height: 100vh;
-  padding: 40rpx;
+page {
+  background: #f7f3f0;
+  font-family: PingFangSC, sans-serif;
 }
-.card{
+.container {
+  padding: 30rpx;
+}
+.page-title {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #3d3530;
+  margin-bottom: 30rpx;
+}
+
+.service-box {
   background: #fff;
   border-radius: 24rpx;
-  padding: 60rpx 40rpx;
-  text-align: center;
+  padding: 20rpx;
+  margin-bottom: 30rpx;
 }
-.icon{
-  width: 100rpx;
-  height: 100rpx;
-  margin-bottom: 20rpx;
+.service-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30rpx 0;
+  border-bottom: 1rpx solid #f0ebe6;
 }
-.title{
-  font-size: 34rpx;
+.service-item:last-child {
+  border-bottom: none;
+}
+.service-left {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+.service-icon {
+  font-size: 32rpx;
+}
+.service-title {
+  font-size: 28rpx;
+  color: #3d3530;
+  font-weight: 500;
+}
+.service-value {
+  font-size: 26rpx;
+  color: #d4b9a8;
+}
+.service-arrow {
+  font-size: 28rpx;
+  color: #d4b9a8;
   font-weight: bold;
-  display: block;
-  margin-bottom: 10rpx;
 }
-.desc{
+
+.service-desc {
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 30rpx;
   font-size: 26rpx;
   color: #888;
-  display: block;
-  margin-bottom: 40rpx;
-}
-.phone{
-  font-size: 36rpx;
-  color: #007aff;
-  font-weight: bold;
-  margin-bottom: 50rpx;
-}
-.call-btn{
-  background: #0071e3;
-  color: #fff;
-  border-radius: 16rpx;
+  line-height: 1.6;
 }

@@ -12,14 +12,14 @@
     "pages/recycle/recycle"
   ],
   "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#0071e3",
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#f7f3f0",
     "navigationBarTitleText": "数码精选商城",
-    "navigationBarTextStyle": "white"
+    "navigationBarTextStyle": "black"
   },
   "tabBar": {
     "color": "#86868b",
-    "selectedColor": "#0071e3",
+    "selectedColor": "#d4b9a8",
     "backgroundColor": "#ffffff",
     "borderStyle": "black",
     "list": [
