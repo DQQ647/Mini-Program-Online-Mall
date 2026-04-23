@@ -7,7 +7,6 @@
   <image class="avatar" src="/images/tab/touxiang.jpg"></image>
 
   <view class="username">{{userInfo ? userInfo.nickName : '点击登录'}}</view>
-  <view class="user-desc">Apple Store 会员用户</view>
 </view>
 
 <!-- 订单模块 -->
