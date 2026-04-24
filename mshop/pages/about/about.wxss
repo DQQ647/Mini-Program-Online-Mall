@@ -5,65 +5,85 @@ page {
 .container {
   padding: 30rpx;
 }
+
+/* 标题行：左右分开，绝对不遮挡 */
+.title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
 .page-title {
   font-size: 34rpx;
   font-weight: 600;
   color: #3d3530;
-  margin-bottom: 30rpx;
+}
+.version {
+  font-size: 24rpx;
+  color: #999;
+  background: #f0ebe6;
+  padding: 6rpx 12rpx;
+  border-radius: 10rpx;
 }
 
-.about-box {
+.card {
   background: #fff;
   border-radius: 24rpx;
   padding: 40rpx 30rpx;
-  margin-bottom: 30rpx;
-  text-align: center;
 }
-.logo-wrap {
+.brand {
+  text-align: center;
   margin-bottom: 40rpx;
 }
-.logo {
-  font-size: 80rpx;
-  display: block;
-  margin-bottom: 15rpx;
+.logo-box {
+  width: 120rpx;
+  height: 120rpx;
+  background: #f7f3f0;
+  border-radius: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20rpx;
 }
-.app-name {
+.logo-icon {
+  font-size: 60rpx;
+}
+.brand-name {
   font-size: 32rpx;
   font-weight: 600;
   color: #3d3530;
 }
 
+.info-list {
+  margin-bottom: 30rpx;
+}
 .info-item {
   display: flex;
   justify-content: space-between;
-  padding: 20rpx 0;
+  padding: 24rpx 0;
   border-bottom: 1rpx solid #f0ebe6;
-  font-size: 26rpx;
 }
 .info-item:last-child {
   border-bottom: none;
 }
 .label {
-  color: #666;
-}
-.value {
+  font-size: 28rpx;
   color: #3d3530;
 }
-.link {
-  color: #d4b9a8;
+.value {
+  font-size: 28rpx;
+  color: #888;
 }
 
 .desc {
-  margin-top: 30rpx;
   font-size: 26rpx;
   color: #888;
-  line-height: 1.6;
-  text-align: left;
+  line-height: 1.7;
 }
 
 .copyright {
   text-align: center;
+  margin-top: 60rpx;
   font-size: 24rpx;
   color: #999;
-  margin-top: 40rpx;
 }

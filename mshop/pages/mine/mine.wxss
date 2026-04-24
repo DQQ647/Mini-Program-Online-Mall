@@ -3,112 +3,90 @@ page {
   font-family: PingFangSC, sans-serif;
 }
 .container {
-  padding: 25rpx;
+  padding: 30rpx;
 }
-
-.user-card {
+/* 头部用户信息 */
+.header {
   background: #d4b9a8;
-  border-radius: 32rpx;
-  height: 260rpx;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border-radius: 24rpx;
+  padding: 40rpx 0;
+  text-align: center;
   margin-bottom: 30rpx;
 }
-.login-text {
+.avatar image {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  margin-bottom: 20rpx;
+}
+.username {
+  font-size: 30rpx;
+  color: #fff;
+  font-weight: 500;
+}
+/* 订单模块 */
+.order-section {
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+}
+.title {
   font-size: 32rpx;
-  color: #fff;
-  background: rgba(255,255,255,0.2);
-  padding: 20rpx 40rpx;
-  border-radius: 20rpx;
-}
-.user-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.avatar {
-  width: 110rpx;
-  height: 110rpx;
-  border-radius: 55rpx;
-  border: 3rpx solid #fff;
-}
-.nickname {
-  color: #fff;
-  font-size: 30rpx;
-  margin-top: 12rpx;
-}
-
-.box {
-  background: #ffffff;
-  border-radius: 32rpx;
-  padding: 40rpx 35rpx;
-  margin-bottom: 25rpx;
-}
-.box-title {
-  font-size: 30rpx;
   font-weight: 600;
-  color: #3d3530;
   margin-bottom: 30rpx;
+  color: #333;
 }
-
 .order-list {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
-.item {
+.order-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 24rpx;
-  color: #888;
+  font-size: 26rpx;
+  color: #666;
 }
-.icon {
+.order-item .icon {
   font-size: 40rpx;
   margin-bottom: 10rpx;
 }
-
-.menu-box {
+/* 功能列表 */
+.menu-section {
   background: #fff;
-  border-radius: 32rpx;
-  padding: 20rpx 30rpx;
-  margin-bottom: 25rpx;
+  border-radius: 24rpx;
+  padding: 0 30rpx;
+  margin-bottom: 30rpx;
 }
 .menu-item {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 28rpx 0;
-  border-bottom: 1rpx solid #f8f3f0;
+  padding: 30rpx 0;
+  border-bottom: 1rpx solid #f0ebe6;
 }
 .menu-item:last-child {
   border-bottom: none;
 }
-.menu-left {
-  display: flex;
-  align-items: center;
-  gap: 20rpx;
-}
-.menu-icon {
+.menu-item .icon {
   font-size: 32rpx;
+  margin-right: 20rpx;
 }
-.menu-title {
-  font-size: 27rpx;
-  color: #3d3530;
-  font-weight: 500;
-}
-.menu-arrow {
+.menu-item text {
+  flex: 1;
   font-size: 28rpx;
-  color: #d4b9a8;
-  font-weight: bold;
+  color: #333;
 }
-
-.logout {
+.arrow {
+  color: #ccc;
+  font-size: 28rpx;
+}
+/* 退出登录按钮 */
+.logout-btn {
   background: #fff;
-  border-radius: 32rpx;
+  border-radius: 24rpx;
   text-align: center;
-  padding: 25rpx;
-  color: #c1695f;
-  font-size: 28rpx;
-  margin-top: 20rpx;
+  padding: 30rpx;
+  font-size: 30rpx;
+  color: #d4b9a8;
 }

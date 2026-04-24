@@ -11,51 +11,47 @@ page {
   color: #3d3530;
   margin-bottom: 30rpx;
 }
-
-.service-box {
+.card {
   background: #fff;
   border-radius: 24rpx;
   padding: 20rpx;
   margin-bottom: 30rpx;
 }
-.service-item {
+.item {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 30rpx 0;
+  align-items: center;
+  padding: 30rpx 20rpx;
   border-bottom: 1rpx solid #f0ebe6;
 }
-.service-item:last-child {
+.item:last-child {
   border-bottom: none;
 }
-.service-left {
+.left {
   display: flex;
   align-items: center;
   gap: 20rpx;
 }
-.service-icon {
+.icon {
   font-size: 32rpx;
 }
-.service-title {
+.label {
   font-size: 28rpx;
   color: #3d3530;
-  font-weight: 500;
 }
-.service-value {
-  font-size: 26rpx;
-  color: #d4b9a8;
-}
-.service-arrow {
+.value {
   font-size: 28rpx;
   color: #d4b9a8;
-  font-weight: bold;
 }
-
-.service-desc {
+.arrow {
+  font-size: 28rpx;
+  color: #d4b9a8;
+}
+.desc {
   background: #fff;
   border-radius: 24rpx;
   padding: 30rpx;
   font-size: 26rpx;
   color: #888;
-  line-height: 1.6;
+  line-height: 1.7;
 }

@@ -1,33 +1,45 @@
 <view class="container">
   <view class="page-title">联系客服</view>
 
-  <view class="service-box">
-    <view class="service-item" bindtap="makeCall">
-      <view class="service-left">
-        <text class="service-icon">📞</text>
-        <text class="service-title">客服电话</text>
+  <view class="card">
+    <!-- 客服电话 -->
+    <view class="item" bindtap="callPhone">
+      <view class="left">
+        <text class="icon">📞</text>
+        <text class="label">客服电话</text>
       </view>
-      <text class="service-value">400-888-9999</text>
+      <text class="value">400-888-9999</text>
     </view>
 
-    <view class="service-item" bindtap="openChat">
-      <view class="service-left">
-        <text class="service-icon">💬</text>
-        <text class="service-title">在线客服</text>
+    <!-- 在线客服 -->
+    <view class="item" bindtap="goToChat">
+      <view class="left">
+        <text class="icon">💬</text>
+        <text class="label">在线客服</text>
       </view>
-      <text class="service-arrow">></text>
+      <text class="arrow">></text>
     </view>
 
-    <view class="service-item">
-      <view class="service-left">
-        <text class="service-icon">🕒</text>
-        <text class="service-title">工作时间</text>
+    <!-- 工作时间 -->
+    <view class="item">
+      <view class="left">
+        <text class="icon">⏰</text>
+        <text class="label">工作时间</text>
       </view>
-      <text class="service-value">9:00-21:00</text>
+      <text class="value">9:00-21:00</text>
+    </view>
+
+    <!-- 邮箱支持 -->
+    <view class="item">
+      <view class="left">
+        <text class="icon">✉️</text>
+        <text class="label">邮箱支持</text>
+      </view>
+      <text class="value">support@jpsm.com</text>
     </view>
   </view>
 
-  <view class="service-desc">
-    如遇订单、商品、售后等问题，可通过以上方式联系我们，我们将尽快为您处理。
+  <view class="desc">
+    如遇订单查询、商品咨询、售后处理等问题，可通过以上方式联系我们，我们将尽快为您处理。
   </view>
 </view>

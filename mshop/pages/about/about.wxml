@@ -1,31 +1,39 @@
 <view class="container">
-  <view class="page-title">关于我们</view>
+  <!-- 标题栏：版本号在右侧，不遮挡 -->
+  <view class="title-row">
+    <text class="page-title">关于我们</text>
+    <text class="version">v1.0.0</text>
+  </view>
 
-  <view class="about-box">
-    <view class="logo-wrap">
-      <text class="logo">🍎</text>
-      <text class="app-name">Apple商城</text>
+  <view class="card">
+    <view class="brand">
+      <view class="logo-box">
+        <text class="logo-icon">📱</text>
+      </view>
+      <view class="brand-name">精品数码商城</view>
     </view>
 
-    <view class="info-item">
-      <text class="label">版本</text>
-      <text class="value">v1.0.0</text>
-    </view>
-
-    <view class="info-item">
-      <text class="label">公司</text>
-      <text class="value">Apple科技有限公司</text>
-    </view>
-
-    <view class="info-item">
-      <text class="label">官网</text>
-      <text class="value link" bindtap="openWebsite">www.apple.com</text>
+    <view class="info-list">
+      <view class="info-item">
+        <text class="label">🏢 公司</text>
+        <text class="value">精品数码科技有限公司</text>
+      </view>
+      <view class="info-item">
+        <text class="label">🌐 官网</text>
+        <text class="value">www.jpsm.com</text>
+      </view>
+      <view class="info-item">
+        <text class="label">📧 邮箱</text>
+        <text class="value">service@jpsm.com</text>
+      </view>
     </view>
 
     <view class="desc">
-      我们致力于为用户提供优质的Apple产品与服务，打造便捷、安全、舒适的购物体验。
+      我们专注于为数码爱好者提供正品、高性价比的数码产品与贴心服务，打造便捷、安全、舒适的线上购物体验。
     </view>
   </view>
 
-  <view class="copyright">© 2026 Apple商城 版权所有</view>
+  <view class="copyright">
+    © 2026 精品数码商城 版权所有
+  </view>
 </view>

@@ -1,40 +1,29 @@
 <view class="container">
-  <view class="order-list">
-    <view 
-      class="order-item" 
-      wx:for="{{orderList}}" 
-      wx:key="id"
-      data-id="{{item.id}}"
-      bindtap="onOrderTap"
-    >
-      <!-- 订单头部：订单号 + 状态 -->
-      <view class="order-header">
-        <text class="order-id">订单号：{{item.orderNo}}</text>
-        <text class="order-status {{item.status == 0 ? 'wait' : item.status == 1 ? 'ing' : 'done'}}">
-          {{item.statusText}}
-        </text>
-      </view>
+  <view class="tab-bar">
+    <view class="tab {{currentTab === 'all' ? 'active' : ''}}" bindtap="switchTab" data-status="all">全部</view>
+    <view class="tab {{currentTab === '0' ? 'active' : ''}}" bindtap="switchTab" data-status="0">待发货</view>
+    <view class="tab {{currentTab === '1' ? 'active' : ''}}" bindtap="switchTab" data-status="1">待收货</view>
+    <view class="tab {{currentTab === '2' ? 'active' : ''}}" bindtap="switchTab" data-status="2">已完成</view>
+  </view>
 
-      <!-- 商品列表：带产品图片 -->
-      <view class="goods-list">
-        <view class="goods-item" wx:for="{{item.goodsList}}" wx:for-item="goods" wx:key="goods.id">
-          <image class="goods-img" src="{{goods.img}}" mode="aspectFill"></image>
-          <view class="goods-info">
-            <text class="goods-name">{{goods.name}}</text>
-            <text class="goods-price">¥{{goods.price}}</text>
-          </view>
+  <scroll-view class="order-list" scroll-y>
+    <view wx:for="{{orderList}}" wx:key="id" class="order-item">
+      <view class="order-header">
+        <text class="order-no">订单号：{{item.orderNo}}</text>
+        <text class="status">{{item.statusText}}</text>
+      </view>
+      <view class="goods-item">
+        <image src="{{item.goodsList[0].pic}}" mode="aspectFill"></image>
+        <view class="goods-info">
+          <view class="name">{{item.goodsList[0].name}}</view>
+          <view class="price">¥{{item.goodsList[0].price}}</view>
         </view>
       </view>
-
-      <!-- 订单底部：总价 -->
       <view class="order-footer">
-        <text class="total">共{{item.goodsList.length}}件商品 合计：¥{{item.totalPrice}}</text>
+        <text class="total">共{{item.totalNum}}件商品，合计：¥{{item.totalPrice}}</text>
       </view>
     </view>
-  </view>
 
-  <view class="empty" wx:if="{{orderList.length == 0}}">
-    <image class="empty-img" src="/images/tab/empty.png" mode="aspectFill"></image>
-    <text class="empty-text">暂无订单</text>
-  </view>
+    <view wx:if="{{orderList.length === 0}}" class="empty">暂无订单</view>
+  </scroll-view>
 </view>

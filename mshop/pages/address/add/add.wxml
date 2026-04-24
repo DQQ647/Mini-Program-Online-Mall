@@ -1,0 +1,80 @@
+<view class="container">
+  <!-- 收货人 -->
+  <view class="form-item">
+    <text class="label">收货人</text>
+    <input
+      class="input"
+      placeholder="请输入收货人姓名"
+      value="{{form.name}}"
+      bindinput="inputName"
+    />
+  </view>
+
+  <!-- 手机号 -->
+  <view class="form-item">
+    <text class="label">手机号码</text>
+    <input
+      class="input"
+      placeholder="请输入手机号码"
+      value="{{form.phone}}"
+      bindinput="inputPhone"
+      type="number"
+    />
+  </view>
+
+  <!-- 省市区 -->
+  <view class="form-item">
+    <text class="label">省份</text>
+    <input
+      class="input"
+      placeholder="如：广东省"
+      value="{{form.province}}"
+      bindinput="inputProvince"
+    />
+  </view>
+
+  <view class="form-item">
+    <text class="label">城市</text>
+    <input
+      class="input"
+      placeholder="如：深圳市"
+      value="{{form.city}}"
+      bindinput="inputCity"
+    />
+  </view>
+
+  <view class="form-item">
+    <text class="label">区县</text>
+    <input
+      class="input"
+      placeholder="如：南山区"
+      value="{{form.district}}"
+      bindinput="inputDistrict"
+    />
+  </view>
+
+  <!-- 详细地址 -->
+  <view class="form-item">
+    <text class="label">详细地址</text>
+    <textarea
+      class="textarea"
+      placeholder="请输入详细地址（街道、门牌号等）"
+      value="{{form.detail}}"
+      bindinput="inputDetail"
+    ></textarea>
+  </view>
+
+  <!-- 默认地址 -->
+  <view class="form-item check-row">
+    <text class="label">设为默认地址</text>
+    <switch
+      checked="{{form.isDefault}}"
+      bindchange="switchDefault"
+    />
+  </view>
+
+  <!-- 保存按钮 -->
+  <view class="save-btn" bindtap="saveAddress">
+    保存地址
+  </view>
+</view>

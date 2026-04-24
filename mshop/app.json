@@ -7,7 +7,9 @@
     "pages/mine/mine",
     "pages/order/order",
     "pages/address/address",
+    "pages/address/add/add",
     "pages/service/service",
+    "pages/service/chat/chat",
     "pages/about/about",
     "pages/recycle/recycle",
     "pages/login/login"
@@ -15,7 +17,7 @@
   "window": {
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#f7f3f0",
-    "navigationBarTitleText": "数码精选商城",
+    "navigationBarTitleText": "精品数码商城",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {

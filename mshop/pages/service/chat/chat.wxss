@@ -1,0 +1,89 @@
+page {
+  background: #f7f3f0;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.chat-box {
+  flex: 1;
+  padding: 20rpx;
+}
+
+.msg-item {
+  display: flex;
+  margin-bottom: 20rpx;
+  max-width: 70%;
+}
+
+.msg-item.service {
+  flex-direction: row;
+}
+
+.msg-item.self {
+  margin-left: auto;
+  flex-direction: row-reverse;
+}
+
+.avatar {
+  width: 50rpx;
+  height: 50rpx;
+  background: #d4b9a8;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10rpx;
+  font-size: 22rpx;
+}
+
+.msg-text {
+  background: #fff;
+  padding: 20rpx;
+  border-radius: 16rpx;
+  font-size: 26rpx;
+  line-height: 1.4;
+}
+
+.msg-item.self .msg-text {
+  background: #d4b9a8;
+  color: #fff;
+}
+
+/* 关键：让输入框和按钮完美对齐 */
+.input-bar {
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+  background: #fff;
+  border-top: 1rpx solid #eee;
+}
+
+.input {
+  flex: 1;
+  height: 70rpx;
+  background: #f5f5f5;
+  border-radius: 35rpx;
+  padding: 0 20rpx;
+  font-size: 26rpx;
+  box-sizing: border-box;
+}
+
+.send-btn {
+  width: 150rpx;
+  height: 70rpx;
+  background: #d4b9a8;
+  color: #fff;
+  border-radius: 35rpx;
+  font-size: 26rpx;
+  margin-left: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+}

@@ -1,0 +1,13 @@
+<view class="container">
+  <scroll-view class="chat-box" scroll-y>
+    <view wx:for="{{msgList}}" wx:key="index" class="msg-item {{item.type}}">
+      <view class="avatar">{{item.type == 'self' ? '我' : '客'}}</view>
+      <view class="msg-text">{{item.content}}</view>
+    </view>
+  </scroll-view>
+
+  <view class="input-bar">
+    <input class="input" placeholder="请输入消息" value="{{inputText}}" bindinput="onInput" />
+    <button class="send-btn" bindtap="sendMsg">发送</button>
+  </view>
+</view>
