@@ -1,40 +1,38 @@
 Page({
   data: {
     cartList: [],
-    total: 0
+    totalPrice: 0
   },
 
   onShow() {
-    this.getCartData()
+    this.getCartList()
   },
 
-  getCartData() {
-    wx.request({
-      url: "http://localhost:3001/getCart",
-      success: res => {
-        let list = res.data
-        let sum = 0
-        list.forEach(v => {
-          sum += Number(v.price)
-        })
-        this.setData({
-          cartList: list,
-          total: sum
-        })
-      }
+  // 获取购物车
+  getCartList() {
+    let cart = wx.getStorageSync('cart') || []
+    let total = 0
+    cart.forEach(item => {
+      total += parseFloat(item.price)
+    })
+    this.setData({
+      cartList: cart,
+      totalPrice: total.toFixed(2)
     })
   },
 
-  del(e) {
+  // 删除购物车
+  delCart(e) {
     let id = e.currentTarget.dataset.id
-    wx.request({
-      url: "http://localhost:3001/delCart",
-      method: "POST",
-      data: { id },
-      success: () => {
-        wx.showToast({ title: "删除成功" })
-        this.getCartData()
-      }
-    })
+    let cart = wx.getStorageSync('cart') || []
+    cart = cart.filter(item => item.id != id)
+    wx.setStorageSync('cart', cart)
+    this.getCartList()
+    wx.showToast({ title: '删除成功' })
+  },
+
+  // 去结算
+  toBuy() {
+    wx.showToast({ title: '即将支持下单', icon: 'none' })
   }
 })

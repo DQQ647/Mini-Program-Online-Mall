@@ -1,2 +1,25 @@
-<!--pages/details/details.wxml-->
-<text>pages/details/details.wxml</text>
+<view class="container">
+  <!-- 商品主图 -->
+  <image class="main-img" src="{{goods.url}}"></image>
+
+  <!-- 标题 + 价格 -->
+  <view class="info">
+    <view class="title">{{goods.title}}</view>
+    <view class="price">¥{{goods.price}}</view>
+  </view>
+
+  <!-- 商品详情 -->
+  <view class="detail-section">
+    <view class="detail-title">商品详情</view>
+    <view class="detail-text">{{goods.detailText}}</view>
+    <view class="detail-imgs">
+      <image src="/images/detail1.png"></image>
+      <image src="/images/detail2.png"></image>
+    </view>
+  </view>
+</view>
+
+<!-- 底部加入购物车 -->
+<view class="bottom-bar">
+  <view class="add-cart" bindtap="addCart">加入购物车</view>
+</view>

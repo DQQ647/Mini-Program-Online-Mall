@@ -1,21 +1,19 @@
 <view class="container">
-  <scroll-view class="cart-list" scroll-y>
-    <view class="item" wx:for="{{cartList}}" wx:key="id">
-      <image src="{{item.image}}" class="img"></image>
+  <view class="cart-list">
+    <view wx:for="{{cartList}}" wx:key="id" class="cart-item">
+      <image src="{{item.url}}" mode="aspectFill"></image>
       <view class="info">
-        <text class="title">{{item.title}}</text>
-        <text class="price">¥{{item.price}}</text>
+        <view class="title">{{item.title}}</view>
+        <view class="price">¥{{item.price}}</view>
       </view>
-      <text class="del" bindtap="del" data-id="{{item.id}}">删除</text>
+      <view class="del" bindtap="delCart" data-id="{{item.id}}">删除</view>
     </view>
 
-    <view class="empty" wx:if="{{cartList.length == 0}}">
-      购物车为空
-    </view>
-  </scroll-view>
+    <view wx:if="{{cartList.length == 0}}" class="empty">购物车是空的哦~</view>
+  </view>
 
-  <view class="bottom">
-    <view class="total">合计：¥{{total}}</view>
-    <button class="buy">去结算</button>
+  <view wx:if="{{cartList.length > 0}}" class="bottom-bar">
+    <view class="total">合计：¥{{totalPrice}}</view>
+    <view class="buy" bindtap="toBuy">去结算</view>
   </view>
 </view>

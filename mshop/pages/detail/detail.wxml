@@ -1,6 +1,25 @@
 <view class="container">
-  <image class="top-img" src="{{info.topimage}}"></image>
-  <view class="title">{{info.title}}</view>
-  <view class="price">¥{{info.price}}</view>
-  <image class="content" src="{{info.details}}"></image>
+  <!-- 商品主图 -->
+  <view class="goods-img">
+    <image src="{{goods.url}}" mode="aspectFill"></image>
+  </view>
+
+  <!-- 价格+标题 -->
+  <view class="info-box">
+    <view class="price">¥{{goods.price}}</view>
+    <view class="title">{{goods.title}}</view>
+  </view>
+
+  <!-- 商品详情 -->
+  <view class="detail-box">
+    <view class="detail-title">商品详情</view>
+    <view class="detail-content">
+      <image wx:for="{{goods.detailImgs}}" wx:key="*this" src="{{item}}" mode="aspectFill"></image>
+    </view>
+  </view>
+</view>
+
+<!-- 底部加入购物车按钮 -->
+<view class="cart-bar">
+  <view class="add-cart" bindtap="addCart">加入购物车</view>
 </view>

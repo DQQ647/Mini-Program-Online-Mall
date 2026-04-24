@@ -1,29 +1,31 @@
 <view class="container">
-  <!-- 左侧分类 -->
-  <view class="left-bar">
+  <scroll-view class="left-nav" scroll-y>
     <view 
-      class="cate-item {{currentIndex==index?'active':''}}" 
       wx:for="{{cateList}}" 
-      wx:key="index"
+      wx:key="type"
+      class="nav-item {{currentIndex === index ? 'active' : ''}}"
       bindtap="switchCate"
       data-index="{{index}}"
     >
       {{item.name}}
     </view>
-  </view>
+  </scroll-view>
 
-  <!-- 右侧商品 -->
-  <view class="right-goods">
-    <view 
-      class="goods-card" 
-      wx:for="{{goodsList}}" 
-      wx:key="id"
-      bindtap="goDetail"
-      data-id="{{item.id}}"
-    >
-      <image src="{{item.url}}" class="goods-img"></image>
-      <view class="goods-name">{{item.name}}</view>
-      <view class="goods-price">¥{{item.price}}</view>
+  <scroll-view class="goods-container" scroll-y>
+    <view class="goods-grid">
+      <view 
+        wx:for="{{goodsList}}" 
+        wx:key="id"
+        class="goods-card"
+        bindtap="goDetail"
+        data-id="{{item.id}}"
+      >
+        <image class="goods-img" src="{{item.url}}" mode="aspectFill"></image>
+        <view class="goods-info">
+          <text class="goods-title">{{item.title}}</text>
+          <text class="goods-price">¥{{item.price}}</text>
+        </view>
+      </view>
     </view>
-  </view>
+  </scroll-view>
 </view>
