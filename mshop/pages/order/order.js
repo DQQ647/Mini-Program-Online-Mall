@@ -21,9 +21,7 @@ Page({
   },
 
   loadOrderList(status) {
-    // 从本地存储获取订单（后续购物车下单会自动写入）
     let allOrders = wx.getStorageSync('orderList') || []
-    // 状态映射：0=待发货 1=待收货 2=已完成
     const statusMap = {
       '0': 0,
       '1': 1,
@@ -37,7 +35,6 @@ Page({
       list = allOrders.filter(item => item.status === statusMap[status])
     }
 
-    // 给订单加上状态文本，方便显示
     list = list.map(item => {
       let statusText = ''
       switch(item.status) {
@@ -49,5 +46,72 @@ Page({
     })
 
     this.setData({ orderList: list })
+    this.autoOrderStatus()
+  },
+
+  autoOrderStatus() {
+    let orderList = wx.getStorageSync('orderList') || []
+
+    orderList.forEach((item, index) => {
+      if (item.status === 0) {
+        setTimeout(() => {
+          let orders = wx.getStorageSync('orderList') || []
+          if (orders[index]?.status === 0) {
+            orders[index].status = 1
+            wx.setStorageSync('orderList', orders)
+            this.loadOrderList(this.data.currentTab)
+          }
+        }, 3000)
+      }
+
+      if (item.status === 1) {
+        setTimeout(() => {
+          let orders = wx.getStorageSync('orderList') || []
+          if (orders[index]?.status === 1) {
+            orders[index].status = 2
+            wx.setStorageSync('orderList', orders)
+            this.loadOrderList(this.data.currentTab)
+          }
+        }, 6000)
+      }
+    })
+  },
+
+  confirmReceive(e) {
+    const orderNo = e.currentTarget.dataset.orderno
+    let allOrders = wx.getStorageSync('orderList') || []
+    const index = allOrders.findIndex(item => item.orderNo === orderNo)
+    if (index !== -1) {
+      allOrders[index].status = 1
+      wx.setStorageSync('orderList', allOrders)
+      this.loadOrderList(this.data.currentTab)
+      wx.showToast({ title: '确认收货成功', icon: 'success' })
+    }
+  },
+
+  // 删除订单
+  deleteOrder(e) {
+    const orderNo = e.currentTarget.dataset.orderno
+    wx.showModal({
+      title: '提示',
+      content: '确定要删除该订单吗？',
+      success: (res) => {
+        if (res.confirm) {
+          let all = wx.getStorageSync('orderList') || []
+          all = all.filter(i => i.orderNo !== orderNo)
+          wx.setStorageSync('orderList', all)
+          this.loadOrderList(this.data.currentTab)
+          wx.showToast({ title: '删除成功' })
+        }
+      }
+    })
+  },
+
+  // 再次购买
+  buyAgain(e) {
+    const id = e.currentTarget.dataset.goodsid
+    wx.navigateTo({
+      url: '/pages/details/details?id=' + id
+    })
   }
 })

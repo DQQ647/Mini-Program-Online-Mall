@@ -73,9 +73,43 @@ page {
 .total {
   font-size: 26rpx;
   color: #666;
+  display: block;
+  margin-bottom: 15rpx;
 }
 .empty {
   text-align: center;
   padding: 100rpx 0;
   color: #999;
+}
+
+.receive-btn {
+  display: inline-block;
+  padding: 10rpx 20rpx;
+  border: 1rpx solid #d4b9a8;
+  color: #d4b9a8;
+  border-radius: 8rpx;
+  font-size: 24rpx;
+  margin-top: 10rpx;
+}
+
+/* 已完成按钮组 */
+.btn-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20rpx;
+  margin-top: 10rpx;
+}
+.del-btn {
+  padding: 10rpx 20rpx;
+  border: 1rpx solid #999;
+  color: #999;
+  border-radius: 8rpx;
+  font-size: 24rpx;
+}
+.buy-btn {
+  padding: 10rpx 20rpx;
+  background: #d4b9a8;
+  color: #fff;
+  border-radius: 8rpx;
+  font-size: 24rpx;
 }

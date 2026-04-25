@@ -1,40 +1,41 @@
-<view class="home-wrap">
-  <!-- 顶部轮播广告 -->
-  <swiper class="ad-swiper" indicator-dots autoplay circular interval="3000">
-    <swiper-item wx:for="{{swiperList}}" wx:key="id">
-      <image src="{{item.url}}" mode="aspectFill" class="ad-img" />
-    </swiper-item>
-  </swiper>
+<!-- 搜索栏 -->
+<view class="search-box">
+  <input class="search-input" placeholder="搜索商品名称" bindinput="onSearchInput" value="{{searchKey}}" />
+</view>
 
-  <!-- 苹果风分割标题 -->
-  <view class="title-line">
-    <text class="title-text">Apple 精选数码</text>
+<!-- 轮播图 -->
+<swiper class="banner" indicator-dots circular autoplay>
+  <swiper-item wx:for="{{bannerList}}" wx:key="id">
+    <image src="{{item.url}}" mode="widthFix"></image>
+  </swiper-item>
+</swiper>
+
+<!-- 分类导航 -->
+<view class="nav-grid">
+  <view class="nav-item" bindtap="goCategory" data-type="热门推荐">
+    <view class="icon">🔥</view>
+    <text>热门推荐</text>
   </view>
-
-  <!-- 单品广告区块 - iPhone -->
-  <view class="ad-card card-1">
-    <view class="ad-text">
-      <text class="ad-main">iPhone 17 Pro</text>
-      <text class="ad-sub">超强芯片 · 专业影像系统</text>
-    </view>
+  <view class="nav-item" bindtap="goCategory" data-type="手机数码">
+    <view class="icon">📱</view>
+    <text>手机数码</text>
   </view>
-
-  <!-- 单品广告区块 - 电脑 -->
-  <view class="ad-card card-2">
-    <view class="ad-text">
-      <text class="ad-main">MacBook Air</text>
-      <text class="ad-sub">轻薄机身 · 超长续航</text>
-    </view>
+  <view class="nav-item" bindtap="goCategory" data-type="家用电器">
+    <view class="icon">🏠</view>
+    <text>家用电器</text>
   </view>
-
-  <!-- 单品广告区块 - 配件 -->
-  <view class="ad-card card-3">
-    <view class="ad-text">
-      <text class="ad-main">智能配件全家桶</text>
-      <text class="ad-sub">氮化镓快充 · 无线外设</text>
-    </view>
+  <view class="nav-item" bindtap="goCategory" data-type="电脑办公">
+    <view class="icon">💻</view>
+    <text>电脑办公</text>
   </view>
+</view>
 
-  <!-- 底部留白 -->
-  <view class="space"></view>
+<!-- 商品列表 -->
+<view class="goods-title">🔥 热门商品</view>
+<view class="goods-list">
+  <view class="goods-item" wx:for="{{showList}}" wx:key="id" bindtap="goDetail" data-id="{{item.id}}">
+    <image src="http://localhost:3001/images/goods/{{item.id}}.webp" class="goods-img"></image>
+    <view class="name">{{item.title}}</view>
+    <view class="price">¥{{item.price}}</view>
+  </view>
 </view>

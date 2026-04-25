@@ -7,11 +7,12 @@
   </view>
 
   <scroll-view class="order-list" scroll-y>
-    <view wx:for="{{orderList}}" wx:key="id" class="order-item">
+    <view wx:for="{{orderList}}" wx:key="orderNo" class="order-item">
       <view class="order-header">
         <text class="order-no">订单号：{{item.orderNo}}</text>
         <text class="status">{{item.statusText}}</text>
       </view>
+
       <view class="goods-item">
         <image src="{{item.goodsList[0].pic}}" mode="aspectFill"></image>
         <view class="goods-info">
@@ -19,8 +20,22 @@
           <view class="price">¥{{item.goodsList[0].price}}</view>
         </view>
       </view>
+
       <view class="order-footer">
         <text class="total">共{{item.totalNum}}件商品，合计：¥{{item.totalPrice}}</text>
+        
+        <view wx:if="{{item.status === 0}}" 
+              class="receive-btn" 
+              bindtap="confirmReceive" 
+              data-orderno="{{item.orderNo}}">
+          确认收货
+        </view>
+
+        <!-- 已完成订单显示 删除 + 再次购买 -->
+        <view wx:if="{{item.status === 2}}" class="btn-group">
+          <view class="del-btn" bindtap="deleteOrder" data-orderno="{{item.orderNo}}">删除订单</view>
+          <view class="buy-btn" bindtap="buyAgain" data-goodsid="{{item.goodsList[0].id}}">再次购买</view>
+        </view>
       </view>
     </view>
 

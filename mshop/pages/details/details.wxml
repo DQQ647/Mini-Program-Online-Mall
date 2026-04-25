@@ -1,25 +1,22 @@
 <view class="container">
-  <!-- 商品主图 -->
-  <image class="main-img" src="{{goods.url}}"></image>
+  <image class="goods-img" src="{{goods.url}}" mode="widthFix"></image>
+  <view class="title">{{goods.title}}</view>
+  <view class="price">¥{{goods.price}}</view>
+  <view class="desc">{{goods.detailText}}</view>
 
-  <!-- 标题 + 价格 -->
-  <view class="info">
-    <view class="title">{{goods.title}}</view>
-    <view class="price">¥{{goods.price}}</view>
-  </view>
-
-  <!-- 商品详情 -->
-  <view class="detail-section">
-    <view class="detail-title">商品详情</view>
-    <view class="detail-text">{{goods.detailText}}</view>
-    <view class="detail-imgs">
-      <image src="/images/detail1.png"></image>
-      <image src="/images/detail2.png"></image>
+  <!-- 数量选择器 -->
+  <view class="num-row">
+    <text>购买数量</text>
+    <view class="num-box">
+      <view bindtap="setNum" data-type="minus" class="btn">-</view>
+      <view class="num">{{buyNum}}</view>
+      <view bindtap="setNum" data-type="plus" class="btn">+</view>
     </view>
   </view>
-</view>
 
-<!-- 底部加入购物车 -->
-<view class="bottom-bar">
-  <view class="add-cart" bindtap="addCart">加入购物车</view>
+  <!-- 按钮 -->
+  <view class="btn-row">
+    <view class="btn cart" bindtap="addCart">加入购物车</view>
+    <view class="btn buy" bindtap="goConfirm">立即购买</view>
+  </view>
 </view>

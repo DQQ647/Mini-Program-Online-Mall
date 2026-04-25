@@ -5,7 +5,6 @@ page {
 .container {
   padding: 30rpx;
 }
-/* 头部用户信息 */
 .header {
   background: #d4b9a8;
   border-radius: 24rpx;
@@ -24,7 +23,6 @@ page {
   color: #fff;
   font-weight: 500;
 }
-/* 订单模块 */
 .order-section {
   background: #fff;
   border-radius: 24rpx;
@@ -52,7 +50,6 @@ page {
   font-size: 40rpx;
   margin-bottom: 10rpx;
 }
-/* 功能列表 */
 .menu-section {
   background: #fff;
   border-radius: 24rpx;
@@ -64,6 +61,7 @@ page {
   align-items: center;
   padding: 30rpx 0;
   border-bottom: 1rpx solid #f0ebe6;
+  position: relative;
 }
 .menu-item:last-child {
   border-bottom: none;
@@ -81,7 +79,6 @@ page {
   color: #ccc;
   font-size: 28rpx;
 }
-/* 退出登录按钮 */
 .logout-btn {
   background: #fff;
   border-radius: 24rpx;
@@ -89,4 +86,22 @@ page {
   padding: 30rpx;
   font-size: 30rpx;
   color: #d4b9a8;
+}
+
+/* ================== */
+/* 修复：红点不遮挡文字 */
+/* ================== */
+.badge {
+  position: absolute;
+  left: 50rpx;
+  top: 10rpx;
+  background: #ff4444;
+  color: #fff;
+  font-size: 20rpx;
+  width: 32rpx;
+  height: 32rpx;
+  line-height: 32rpx;
+  text-align: center;
+  border-radius: 50%;
+  z-index: 10;
 }

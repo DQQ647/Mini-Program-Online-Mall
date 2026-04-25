@@ -1,9 +1,14 @@
 <view class="container">
   <view class="page-title">收货地址</view>
 
-  <!-- 地址列表 -->
   <view class="address-list">
-    <view wx:for="{{addressList}}" wx:key="id" class="address-item">
+    <view 
+      wx:for="{{addressList}}" 
+      wx:key="id" 
+      class="address-item"
+      bindtap="selectAddress"
+      data-id="{{item.id}}"
+    >
       <view class="address-top">
         <text class="name">{{item.name}}</text>
         <text class="phone">{{item.phone}}</text>
@@ -13,18 +18,17 @@
         {{item.province}}{{item.city}}{{item.district}}{{item.detail}}
       </view>
       <view class="address-actions">
+        <text class="action-btn default" bindtap="setDefault" data-id="{{item.id}}">设为默认</text>
         <text class="action-btn edit" bindtap="editAddress" data-id="{{item.id}}">编辑</text>
         <text class="action-btn delete" bindtap="deleteAddress" data-id="{{item.id}}">删除</text>
       </view>
     </view>
 
-    <!-- 空地址提示 -->
     <view wx:if="{{addressList.length === 0}}" class="empty-tip">
       暂无收货地址，点击下方添加
     </view>
   </view>
 
-  <!-- 添加地址按钮 -->
   <view class="add-btn" bindtap="addAddress">
     <text class="add-icon">+</text>
     <text>添加新地址</text>

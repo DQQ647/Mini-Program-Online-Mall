@@ -1,0 +1,29 @@
+<view class="container">
+  <view class="address-card" bindtap="goToAddress">
+    <view class="addr-left">
+      <view class="addr-title">收货地址</view>
+      <view wx:if="{{address}}" class="addr-content">
+        <view class="addr-row name-phone">{{address.name}} {{address.phone}}</view>
+        <view class="addr-row full-address">{{address.province}}{{address.city}}{{address.district}}{{address.detail}}</view>
+      </view>
+      <view wx:else class="empty-address">请添加收货地址</view>
+    </view>
+    <view class="arrow">></view>
+  </view>
+
+  <view class="goods-card">
+    <image src="{{goodsInfo.url}}"></image>
+    <view class="info">
+      <view class="title">{{goodsInfo.title}}</view>
+      <view class="price">¥{{goodsInfo.price}}</view>
+      <view class="num">×{{num}}</view>
+    </view>
+  </view>
+
+  <view class="total-card">
+    <text>实付款</text>
+    <text class="price">¥{{totalPrice}}</text>
+  </view>
+
+  <view class="submit-btn" bindtap="submitOrder" loading="{{loading}}">提交订单并支付</view>
+</view>

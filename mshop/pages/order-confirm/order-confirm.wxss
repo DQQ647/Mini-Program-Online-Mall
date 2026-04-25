@@ -1,0 +1,100 @@
+page {
+  background: #f7f3f0;
+  min-height: 100vh;
+}
+.container {
+  padding: 20rpx;
+}
+
+.address-card {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.addr-left {
+  flex: 1;
+}
+.addr-title {
+  font-size: 28rpx;
+  font-weight: 500;
+  margin-bottom: 15rpx;
+  color: #333;
+}
+.addr-row {
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.6;
+}
+.name-phone {
+  font-weight: 500;
+  color: #333;
+}
+.empty-address {
+  font-size: 26rpx;
+  color: #999;
+}
+.arrow {
+  font-size: 30rpx;
+  color: #ccc;
+}
+
+.goods-card {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 25rpx;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+.goods-card image {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 12rpx;
+}
+.info {
+  margin-left: 20rpx;
+  flex: 1;
+}
+.title {
+  font-size: 28rpx;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+.price {
+  color: #ff3333;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.num {
+  color: #999;
+  font-size: 26rpx;
+  margin-top: 6rpx;
+}
+
+.total-card {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  font-size: 28rpx;
+  color: #333;
+  display: flex;
+  justify-content: space-between;
+}
+.total-card .price {
+  color: #ff3333;
+  font-weight: bold;
+}
+
+.submit-btn {
+  background: #d4b9a8;
+  color: #fff;
+  text-align: center;
+  border-radius: 24rpx;
+  padding: 28rpx;
+  font-size: 30rpx;
+  margin-top: 40rpx;
+}

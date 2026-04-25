@@ -1,69 +1,81 @@
 page {
-  background-color: #f5f5f7;
-  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
-  margin: 0;
-  padding: 0;
-}
-.home-wrap {
-  padding: 0 24rpx;
+  background: #f5f7fa;
 }
 
-/* 顶部轮播广告 */
-.ad-swiper {
+/* 搜索框 */
+.search-box {
+  padding: 20rpx 30rpx;
+  background: #fff;
+}
+.search-input {
   width: 100%;
-  height: 420rpx;
-  border-radius: 28rpx;
-  overflow: hidden;
-  margin: 30rpx 0;
-}
-.ad-img {
-  width: 100%;
-  height: 100%;
-}
-
-/* 分割标题 */
-.title-line {
-  margin: 40rpx 0 20rpx;
-}
-.title-text {
-  font-size: 34rpx;
-  font-weight: 600;
-  color: #1d1d1f;
-}
-
-/* 广告通用卡片 */
-.ad-card {
-  width: 100%;
-  height: 280rpx;
-  border-radius: 28rpx;
-  margin-bottom: 24rpx;
-  display: flex;
-  align-items: flex-end;
-  padding: 40rpx;
-  box-sizing: border-box;
-}
-.card-1 {
-  background: linear-gradient(135deg, #f0f0f2, #e4e4e6);
-}
-.card-2 {
-  background: linear-gradient(135deg, #e2e8f0, #d1d9e3);
-}
-.card-3 {
-  background: linear-gradient(135deg, #f8f3f0, #f0e8e2);
-}
-
-.ad-main {
-  font-size: 36rpx;
-  font-weight: 600;
-  color: #1d1d1f;
-  display: block;
-}
-.ad-sub {
+  height: 70rpx;
+  background: #f2f2f2;
+  border-radius: 50rpx;
+  padding: 0 30rpx;
   font-size: 26rpx;
-  color: #6e6e73;
-  margin-top: 12rpx;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
 }
 
-.space {
-  height: 100rpx;
+/* 轮播 */
+.banner {
+  width: 100%;
+}
+.banner image {
+  width: 100%;
+}
+
+/* 分类 */
+.nav-grid {
+  display: flex;
+  justify-content: space-around;
+  background: #fff;
+  margin: 20rpx;
+  border-radius: 20rpx;
+  padding: 30rpx 0;
+}
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.icon {
+  font-size: 50rpx;
+  margin-bottom: 10rpx;
+}
+
+/* 商品 */
+.goods-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin: 30rpx 30rpx 10rpx;
+}
+.goods-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0 20rpx;
+}
+.goods-item {
+  width: 47%;
+  background: #fff;
+  border-radius: 20rpx;
+  margin-bottom: 20rpx;
+  overflow: hidden;
+}
+.goods-img {
+  width: 100%;
+  height: 320rpx;
+}
+.name {
+  font-size: 26rpx;
+  padding: 10rpx 15rpx;
+}
+.price {
+  font-size: 30rpx;
+  color: red;
+  padding: 0 15rpx 15rpx;
+  font-weight: bold;
 }

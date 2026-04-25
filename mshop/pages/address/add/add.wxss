@@ -1,40 +1,14 @@
-page {
-  background: #f7f3f0;
-  font-family: PingFangSC, sans-serif;
-}
-.container {
-  padding: 30rpx;
-}
+page { background: #f7f3f0; font-family: PingFangSC, sans-serif; }
+.container { padding: 30rpx; }
 .form-item {
-  background: #fff;
-  border-radius: 20rpx;
-  padding: 25rpx 30rpx;
-  margin-bottom: 20rpx;
-  display: flex;
-  align-items: center;
+  background: #fff; border-radius: 20rpx; padding: 25rpx 30rpx;
+  margin-bottom: 20rpx; display: flex; align-items: center;
 }
-.label {
-  width: 150rpx;
-  font-size: 28rpx;
-  color: #333;
-}
-.input, .textarea {
-  flex: 1;
-  font-size: 28rpx;
-  color: #333;
-}
-.textarea {
-  min-height: 100rpx;
-}
-.check-row {
-  justify-content: space-between;
-}
+.label { width: 150rpx; font-size: 28rpx; color: #333; }
+.input, .textarea { flex: 1; font-size: 28rpx; color: #333; }
+.textarea { min-height: 100rpx; }
+.check-row { justify-content: space-between; }
 .save-btn {
-  background: #d4b9a8;
-  color: #fff;
-  text-align: center;
-  border-radius: 24rpx;
-  padding: 28rpx;
-  font-size: 30rpx;
-  margin-top: 40rpx;
+  background: #d4b9a8; color: #fff; text-align: center;
+  border-radius: 24rpx; padding: 28rpx; font-size: 30rpx; margin-top: 40rpx;
 }

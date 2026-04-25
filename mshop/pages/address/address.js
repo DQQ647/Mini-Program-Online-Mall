@@ -1,6 +1,21 @@
 Page({
   data: {
-    addressList: [
+    addressList: [],
+    fromPage: ''
+  },
+
+  onLoad(options) {
+    this.setData({
+      fromPage: options.from || ''
+    })
+  },
+
+  onShow() {
+    this.loadAddress()
+  },
+
+  loadAddress() {
+    let list = wx.getStorageSync('addressList') || [
       {
         id: 1,
         name: '张三',
@@ -22,15 +37,6 @@ Page({
         isDefault: false
       }
     ]
-  },
-
-  onShow() {
-    // 页面显示时可从 storage 加载地址
-    this.loadAddress()
-  },
-
-  loadAddress() {
-    let list = wx.getStorageSync('addressList') || this.data.addressList
     this.setData({ addressList: list })
   },
 
@@ -49,5 +55,28 @@ Page({
     this.setData({ addressList: list })
     wx.setStorageSync('addressList', list)
     wx.showToast({ title: '删除成功' })
+  },
+
+  setDefault(e) {
+    let id = e.currentTarget.dataset.id
+    let list = this.data.addressList.map(item => {
+      item.isDefault = (item.id == id)
+      return item
+    })
+    this.setData({ addressList: list })
+    wx.setStorageSync('addressList', list)
+    wx.showToast({ title: '已设为默认地址' })
+  },
+
+  selectAddress(e) {
+    if (this.data.fromPage === 'confirm') {
+      let id = e.currentTarget.dataset.id
+      let list = this.data.addressList.map(item => {
+        item.isDefault = item.id == id
+        return item
+      })
+      wx.setStorageSync('addressList', list)
+      wx.navigateBack()
+    }
   }
 })

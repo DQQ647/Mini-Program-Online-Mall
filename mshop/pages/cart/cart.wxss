@@ -1,44 +1,71 @@
 page {
-  background: #f7f3f0;
+  background: #f5f5f5;
 }
+
 .container {
   padding-bottom: 120rpx;
 }
-.cart-item {
-  background: #fff;
-  border-radius: 24rpx;
-  margin: 20rpx;
+
+.cart-list {
   padding: 20rpx;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.goods-img {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 8rpx;
+}
+
+.goods-info {
+  flex: 1;
+  margin-left: 20rpx;
+}
+
+.goods-name {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.goods-price {
+  font-size: 30rpx;
+  color: #ff4444;
+  margin: 10rpx 0;
+}
+
+.num-control {
   display: flex;
   align-items: center;
 }
-.cart-item image {
-  width: 150rpx;
-  height: 150rpx;
-  border-radius: 16rpx;
-  margin-right: 20rpx;
-}
-.info {
-  flex: 1;
-}
-.title {
-  font-size: 28rpx;
-  color: #333;
-  margin-bottom: 10rpx;
-}
-.price {
-  font-size: 30rpx;
-  color: #d4b9a8;
-}
-.del {
-  color: #ff4444;
-  font-size: 26rpx;
-  padding: 10rpx;
-}
-.empty {
+
+.btn {
+  width: 60rpx;
+  height: 60rpx;
+  line-height: 60rpx;
   text-align: center;
-  padding: 100rpx 0;
-  color: #999;
+  background: #eee;
+  border-radius: 8rpx;
+  font-size: 32rpx;
+}
+
+.num {
+  width: 80rpx;
+  text-align: center;
+  font-size: 28rpx;
+}
+
+.delete-btn {
+  color: #ff4444;
+  font-size: 28rpx;
+  margin-left: 20rpx;
 }
 
 .bottom-bar {
@@ -49,24 +76,28 @@ page {
   height: 100rpx;
   background: #fff;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   padding: 0 30rpx;
   box-sizing: border-box;
-  border-top: 1rpx solid #eee;
 }
+
 .total {
   font-size: 30rpx;
-  color: #d4b9a8;
-  font-weight: bold;
 }
-.buy {
-  width: 200rpx;
-  height: 70rpx;
-  background: #d4b9a8;
+
+.check-btn {
+  background: #ff6600;
   color: #fff;
-  text-align: center;
-  line-height: 70rpx;
-  border-radius: 35rpx;
+  padding: 16rpx 40rpx;
+  border-radius: 50rpx;
   font-size: 28rpx;
+}
+
+/* 新增：空购物车提示样式 */
+.empty-tip {
+  text-align: center;
+  color: #999;
+  font-size: 28rpx;
+  padding: 100rpx 0;
 }

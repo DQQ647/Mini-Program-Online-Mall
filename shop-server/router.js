@@ -3,17 +3,44 @@ const router = express.Router();
 const SQLConnect = require("./SQLConnect.js");
 const url = require("url");
 const request = require("request");
-// const authorization_code = "itbaizhan"
 
-// const appid = "wxe4135ba344b525f4"
-// const secret = "a3e4a228cf68dbd055f63487352b582b"
-//qsls测试号
+// 微信支付需要的包
+const crypto = require('crypto');
+const xml2js = require('xml2js');
+const axios = require('axios');
+
+// ================== 微信小程序登录配置 ==================
 const authorization_code = "authorization_code"
 const appid = "wx510280a0ce5eaad5"
 const secret = "cc6c2a3f92b3538aef9d84e836828bde"
 
+// ================== 微信支付配置（你自己填写） ==================
+const WX_APPID = "wx510280a0ce5eaad5";
+const WX_MCHID = "你的商户号";
+const WX_API_KEY = "你的商户API密钥";
+const WX_NOTIFY_URL = "https://你的域名/api/pay/notify";
 
+// ================== 工具函数 ==================
+function nonceStr() {
+  return Math.random().toString(36).substr(2, 15);
+}
 
+function paysign(params, key) {
+  let str = Object.keys(params).sort().map(k => k + "=" + params[k]).join("&");
+  str += "&key=" + key;
+  return crypto.createHash('md5').update(str).digest('hex').toUpperCase();
+}
+
+function toXml(obj) {
+  let xml = "<xml>";
+  for (let k in obj) {
+    xml += "<" + k + "><![CDATA[" + obj[k] + "]]></" + k + ">";
+  }
+  xml += "</xml>";
+  return xml;
+}
+
+// ================== 你的原有接口 ==================
 /**
  * banner接口地址
  */
@@ -239,26 +266,12 @@ router.get("/category", (req, res) => {
 /**
  * 登录
  */
-
 router.post("/login", (req, res) => {
     const { code } = req.body;
-	console.log(" 传入临时登录凭证js_code，返回当前用户的openid和session_key ")
-	console.log(" 微信接口 https://api.weixin.qq.com/sns/jscode2session ")
-	console.log(" 临时凭证 js_code   =",code)
-	console.log(" 临时凭证 appid     =",appid)
-	console.log(" 临时凭证 secret    =",secret)
-	console.log(" 临时凭证 grant_type=",authorization_code)
-	
     request(`https://api.weixin.qq.com/sns/jscode2session?appid=${appid}&secret=${secret}&js_code=${code}&grant_type=${authorization_code}`, (err, response, body) => {
         if (err) console.log(err);
         const data = JSON.parse(body);
-		console.log("返回值openid  = ",data.openid)
-		console.log("返回值session_key  = ",data.session_key)
-		
-		// 生成token，实际生成环境一般用JWT生成
-		const token = `mock_token_for_${data.openid}_${Date.now()}`; 
-		
-		console.log("将openid存入user表");
+        const token = `mock_token_for_${data.openid}_${Date.now()}`; 
         const sql = "insert into user values (null,?,?)"
         if(data.openid && data.session_key){
             SQLConnect(sql, [data.openid,data.session_key], (result) => {
@@ -284,5 +297,64 @@ router.post("/login", (req, res) => {
     })
 })
 
+// ================== 微信支付接口（新增） ==================
+router.post("/unified-order", async (req, res) => {
+  try {
+    let { orderId, totalFee, body, openid } = req.body;
+
+    let params = {
+      appid: WX_APPID,
+      mch_id: WX_MCHID,
+      nonce_str: nonceStr(),
+      body: body,
+      out_trade_no: orderId,
+      total_fee: totalFee,
+      spbill_create_ip: "127.0.0.1",
+      notify_url: WX_NOTIFY_URL,
+      trade_type: "JSAPI",
+      openid: openid
+    };
+
+    params.sign = paysign(params, WX_API_KEY);
+    let xml = toXml(params);
+    
+    let { data } = await axios.post("https://api.mch.weixin.qq.com/pay/unifiedorder", xml, {
+      headers: { "Content-Type": "application/xml" }
+    });
+
+    const result = await xml2js.parseStringPromise(data, { explicitArray: false });
+    const xmlData = result.xml;
+
+    if (xmlData.return_code == "SUCCESS" && xmlData.result_code == "SUCCESS") {
+      let payParams = {
+        timeStamp: (Date.now() / 1000 + "").split(".")[0],
+        nonceStr: nonceStr(),
+        package: "prepay_id=" + xmlData.prepay_id,
+        signType: "MD5"
+      };
+      payParams.paySign = paysign({ appId: WX_APPID, ...payParams }, WX_API_KEY);
+      return res.json({ success: true, payParams });
+    } else {
+      return res.json({ success: false, message: xmlData.return_msg || xmlData.err_code_des });
+    }
+  } catch (err) {
+    return res.json({ success: false, message: "支付下单失败" });
+  }
+});
+
+router.post("/pay/notify", async (req, res) => {
+  try {
+    let xml = req.body.toString();
+    const result = await xml2js.parseStringPromise(xml, { explicitArray: false });
+    const data = result.xml;
+
+    if (data.return_code == "SUCCESS" && data.result_code == "SUCCESS") {
+      console.log("✅ 支付成功：订单号 =", data.out_trade_no);
+    }
+    res.send("<xml><return_code>SUCCESS</return_code></xml>");
+  } catch (e) {
+    res.send("<xml><return_code>FAIL</return_code></xml>");
+  }
+});
 
 module.exports = router;

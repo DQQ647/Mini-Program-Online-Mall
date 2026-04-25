@@ -6,6 +6,7 @@
     "pages/cart/cart",
     "pages/mine/mine",
     "pages/order/order",
+    "pages/order-confirm/order-confirm",
     "pages/address/address",
     "pages/address/add/add",
     "pages/service/service",

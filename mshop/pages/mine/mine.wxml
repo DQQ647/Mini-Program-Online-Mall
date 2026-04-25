@@ -1,14 +1,13 @@
 <view class="container">
-  <!-- 头部用户信息区域（保留你原来的样式） -->
+  <!-- 头部用户信息区域（你原来的，完全不动） -->
   <view class="header" bindtap="{{isLogin ? '' : 'goLogin'}}">
     <view class="avatar">
-      <!-- 已登录显示用户头像，未登录显示默认头像 -->
       <image src="{{userInfo.avatarUrl || '/images/default-avatar.png'}}" mode="aspectFill"></image>
     </view>
     <view class="username">{{userInfo.nickName || '微信用户'}}</view>
   </view>
 
-  <!-- 我的订单模块（保留你原来的图标和布局） -->
+  <!-- 我的订单模块（你原来的，不动） -->
   <view class="order-section">
     <view class="title">我的订单</view>
     <view class="order-list">
@@ -31,8 +30,19 @@
     </view>
   </view>
 
-  <!-- 功能列表（和你界面完全一致） -->
+  <!-- 功能列表（我只在这里加了 购物车） -->
   <view class="menu-section">
+
+    <!-- ================== -->
+    <!-- 新增：购物车 + 数量角标 -->
+    <!-- ================== -->
+    <view class="menu-item" bindtap="goCart">
+      <view class="icon">🛒</view>
+      <text>购物车</text>
+      <view class="badge" wx-if="{{cartCount > 0}}">{{cartCount}}</view>
+      <view class="arrow">></view>
+    </view>
+
     <view class="menu-item" bindtap="goAddress">
       <view class="icon">📍</view>
       <text>收货地址</text>
@@ -50,6 +60,5 @@
     </view>
   </view>
 
-  <!-- 退出登录按钮（未登录时隐藏，已登录时显示） -->
   <view wx:if="{{isLogin}}" class="logout-btn" bindtap="logout">退出登录</view>
 </view>

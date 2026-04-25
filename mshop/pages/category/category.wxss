@@ -1,10 +1,12 @@
 page {
   background-color: #f8f5f2;
+  /* 给顶部导航栏留出空间，防止按钮和系统导航重叠 */
+  padding-top: 100rpx;
 }
 
 .container {
   display: flex;
-  height: 100vh;
+  height: calc(100vh - 100rpx);
 }
 
 /* 左侧导航 */
@@ -75,4 +77,25 @@ page {
   color: #d9534f;
   font-weight: bold;
   margin-top: 10rpx;
+}
+
+/* 返回首页按钮 - 调整位置不遮挡文字 */
+.back-btn {
+  position: fixed;
+  top: 30rpx;
+  left: 30rpx;
+  z-index: 999;
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.1);
+}
+.back-icon {
+  font-size: 36rpx;
+  color: #666;
+  font-weight: bold;
 }

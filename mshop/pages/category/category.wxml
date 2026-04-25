@@ -1,3 +1,7 @@
+<view class="back-btn" bindtap="goHome">
+  <text class="back-icon">←</text>
+</view>
+
 <view class="container">
   <scroll-view class="left-nav" scroll-y>
     <view 
