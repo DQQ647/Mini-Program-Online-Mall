@@ -17,6 +17,7 @@ page {
   height: 120rpx;
   border-radius: 50%;
   margin-bottom: 20rpx;
+  background-color: #fff; /* 增加底色防止透明图难看 */
 }
 .username {
   font-size: 30rpx;
@@ -86,22 +87,21 @@ page {
   padding: 30rpx;
   font-size: 30rpx;
   color: #d4b9a8;
+  margin-top: 20rpx;
 }
 
-/* ================== */
-/* 修复：红点不遮挡文字 */
-/* ================== */
 .badge {
   position: absolute;
-  left: 50rpx;
-  top: 10rpx;
+  left: 45rpx; /* 根据图标位置稍微调整 */
+  top: 15rpx;
   background: #ff4444;
   color: #fff;
   font-size: 20rpx;
-  width: 32rpx;
+  min-width: 32rpx;
   height: 32rpx;
   line-height: 32rpx;
   text-align: center;
-  border-radius: 50%;
+  border-radius: 16rpx;
+  padding: 0 4rpx;
   z-index: 10;
 }

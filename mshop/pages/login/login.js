@@ -1,18 +1,14 @@
+const app = getApp();
 Page({
-  login() {
+  handleLogin() {
     wx.getUserProfile({
-      desc: '登录',
-      success: res => {
-        let user = {
-          nickName: res.userInfo.nickName,
-          avatarUrl: "/images/avatar.jpg"
-        }
-        wx.setStorageSync('userInfo', user)
-        wx.showToast({ title: '登录成功' })
-        setTimeout(() => {
-          wx.navigateBack()
-        }, 500)
+      desc: '完善会员资料',
+      success: (res) => {
+        app.globalData.userInfo = res.userInfo;
+        wx.setStorageSync('userInfo', res.userInfo);
+        wx.showToast({ title: '登录成功' });
+        setTimeout(() => wx.navigateBack(), 1000);
       }
-    })
+    });
   }
 })

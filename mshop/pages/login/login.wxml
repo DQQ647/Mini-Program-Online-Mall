@@ -1,8 +1,7 @@
-<view class="container">
+<view class="login-container">
+  <view class="logo-box">M</view>
   <view class="login-card">
-    <view class="title">用户登录</view>
-    <button class="login-btn" bindtap="login">
-      微信授权登录
-    </button>
+    <view class="title">欢迎使用 MSHOP</view>
+    <button class="login-btn" bindtap="handleLogin">微信一键登录</button>
   </view>
 </view>

@@ -1,3 +1,6 @@
+import { request } from '../../utils/request.js';
+const app = getApp();
+
 Page({
   data: {
     goodsInfo: {},
@@ -8,10 +11,13 @@ Page({
   },
 
   onLoad(options) {
-    let goods = JSON.parse(decodeURIComponent(options.goodsInfo));
-    let num = options.num;
-    let total = (Number(goods.price) * num).toFixed(2);
-    this.setData({ goodsInfo: goods, num, totalPrice: total });
+    // 解析详情页传过来的商品数据
+    if (options.goodsInfo) {
+      let goods = JSON.parse(decodeURIComponent(options.goodsInfo));
+      let num = parseInt(options.num || 1);
+      let total = (Number(goods.price) * num).toFixed(2);
+      this.setData({ goodsInfo: goods, num, totalPrice: total });
+    }
     this.loadDefaultAddress();
   },
 
@@ -19,6 +25,7 @@ Page({
     this.loadDefaultAddress();
   },
 
+  // 加载默认地址逻辑
   loadDefaultAddress() {
     let list = wx.getStorageSync('addressList') || [];
     let addr = list.find(i => i.isDefault) || list[0];
@@ -29,61 +36,113 @@ Page({
     wx.navigateTo({ url: '/pages/address/address?from=confirm' });
   },
 
-  // === 提交订单 + 发起微信支付 ===
+  /**
+   * 核心：提交订单并触发支付流程
+   * 对应《微信支付.md》中的流程：下单 -> 获取参数 -> 调用支付 -> 处理回调
+   */
   async submitOrder() {
     const { goodsInfo, num, totalPrice, address } = this.data;
-    if (!address) { wx.showToast({ title: '请选择地址', icon: 'none' }); return; }
+    
+    if (!address) {
+      wx.showToast({ title: '请选择收货地址', icon: 'none' });
+      return;
+    }
+    
     if (this.data.loading) return;
     this.setData({ loading: true });
 
-    // 1. 创建本地订单
-    const orderNo = "ORD" + Date.now();
-    const order = {
-      orderNo,
-      status: 0, // 0待支付 1待发货 2待收货 3已完成
-      totalPrice,
+    try {
+      // 1. 调用后端统一下单接口
+      // 注意：totalFee 单位是“分”，所以要乘以100
+      const payRes = await request({
+        url: 'http://localhost:3001/api/unified-order', 
+        method: 'POST',
+        data: {
+          orderId: "ORD" + Date.now(),
+          totalFee: Math.round(totalPrice * 100), 
+          body: goodsInfo.title,
+          openid: app.globalData.openid || wx.getStorageSync('openid')
+        }
+      });
+
+      // 2. 如果后端接口调通，拉起微信官方支付控件
+      if (payRes && payRes.success) {
+        const payParams = payRes.payParams;
+        wx.requestPayment({
+          ...payParams,
+          success: (res) => {
+            wx.showToast({ title: '支付成功', icon: 'success' });
+            this.saveOrderToLocal(1); // 状态1：待发货
+          },
+          fail: (err) => {
+            wx.showToast({ title: '支付已取消', icon: 'none' });
+            this.saveOrderToLocal(0); // 状态0：待支付
+          }
+        });
+      } else {
+        // 如果后端返回失败，跳转到模拟逻辑
+        throw new Error("后端接口未就绪");
+      }
+
+    } catch (error) {
+      console.error("支付异常，进入模拟流程:", error);
+      
+      // 3. 完美模拟支付弹窗（用于演示和测试）
+      wx.showModal({
+        title: '支付确认',
+        content: `需支付 ¥${totalPrice}，是否模拟支付成功？`,
+        confirmText: '模拟成功',
+        cancelText: '取消支付',
+        confirmColor: '#07c160',
+        success: (res) => {
+          if (res.confirm) {
+            wx.showToast({ title: '模拟支付成功', icon: 'success' });
+            this.saveOrderToLocal(1); // 模拟成功 -> 待发货
+          } else {
+            wx.showToast({ title: '已存入待支付', icon: 'none' });
+            this.saveOrderToLocal(0); // 模拟取消 -> 待支付
+          }
+        }
+      });
+    } finally {
+      this.setData({ loading: false });
+    }
+  },
+
+  /**
+   * 统一保存订单信息到本地缓存
+   * @param {Number} status 订单状态：0待支付，1待发货
+   */
+  saveOrderToLocal(status) {
+    const { goodsInfo, num, totalPrice, address } = this.data;
+    
+    const newOrder = {
+      orderNo: "ORD" + Date.now(),
+      createTime: new Date().toLocaleString(),
+      status: status, 
+      totalPrice: totalPrice,
       totalNum: num,
-      address,
-      goodsList: [{ pic: goodsInfo.url, name: goodsInfo.title, price: goodsInfo.price, num, id: goodsInfo.id }]
+      address: address,
+      goodsList: [{
+        id: goodsInfo.id,
+        name: goodsInfo.title,
+        pic: goodsInfo.url || goodsInfo.topimage,
+        price: goodsInfo.price,
+        num: num
+      }]
     };
 
+    // 获取并更新本地订单列表
     let orderList = wx.getStorageSync("orderList") || [];
-    orderList.unshift(order);
+    orderList.unshift(newOrder); // 最新订单排在最前面
     wx.setStorageSync("orderList", orderList);
 
-    // 2. 请求后端统一下单
-    wx.request({
-      url: "https://你的域名.com/api/unified-order",
-      method: "POST",
-      data: {
-        orderId: orderNo,
-        totalFee: Math.round(Number(totalPrice) * 100), // 单位分
-        body: goodsInfo.title,
-        openid: wx.getStorageSync("openid") || "o123456789"
-      },
-      success: (res) => {
-        if (res.data.success && res.data.payParams) {
-          // 3. 调起微信支付
-          wx.requestPayment({
-            ...res.data.payParams,
-            success: () => {
-              wx.showToast({ title: "支付成功" });
-              setTimeout(() => wx.redirectTo({ url: "/pages/order/order?status=0" }), 1500);
-            },
-            fail: () => {
-              wx.showToast({ title: "支付取消", icon: "none" });
-            },
-            complete: () => this.setData({ loading: false })
-          });
-        } else {
-          wx.showToast({ title: res.data.message || "下单失败", icon: "none" });
-          this.setData({ loading: false });
-        }
-      },
-      fail: () => {
-        wx.showToast({ title: "网络异常", icon: "none" });
-        this.setData({ loading: false });
-      }
-    });
+    // 延迟跳转，让用户看清提示
+    setTimeout(() => {
+      // 直接跳转到订单页，并传入当前订单的状态，方便页面自动切换到对应 Tab
+      wx.redirectTo({ 
+        url: `/pages/order/order?status=${status}` 
+      });
+    }, 1500);
   }
 });
