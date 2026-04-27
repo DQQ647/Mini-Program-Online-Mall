@@ -30,35 +30,30 @@ Page({
     this.filterGoods(type);
   },
 
-  // 加载第1页 + 第2页 → 拿到全部14个商品
-  loadAllData() {
-    wx.showLoading({ title: "加载中..." });
-    let all = [];
+  // 修改后的 category.js
+loadAllData() {
+  wx.showLoading({ title: "加载中..." });
+  
+  wx.request({
+    url: "http://localhost:3001/api/goods", 
+    success: (res) => {
+      // 检查返回数据结构是否正确
+      let all = res.data.data?.result || [];
+      
+      this.setData({ allGoods: all });
 
-    // 第1页
-    wx.request({
-      url: "http://localhost:3001/api/goods?page=1",
-      success: (res) => {
-        let list1 = res.data.data?.result || [];
-        all = all.concat(list1);
-
-        // 第2页
-        wx.request({
-          url: "http://localhost:3001/api/goods?page=2",
-          success: (res2) => {
-            let list2 = res2.data.data?.result || [];
-            all = all.concat(list2);
-
-            this.setData({ allGoods: all });
-            // 默认显示当前选中分类
-            let defaultType = this.data.cateList[this.data.currentIndex].type;
-            this.filterGoods(defaultType);
-            wx.hideLoading();
-          }
-        });
-      }
-    });
-  },
+      // 默认显示当前选中的分类商品
+      let defaultType = this.data.cateList[this.data.currentIndex].type;
+      this.filterGoods(defaultType);
+      
+      wx.hideLoading();
+    },
+    fail: () => {
+      wx.hideLoading();
+      wx.showToast({ title: '网络请求失败', icon: 'none' });
+    }
+  });
+},
 
   // 筛选对应分类商品
   filterGoods(type) {

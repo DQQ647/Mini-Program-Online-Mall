@@ -1,7 +1,7 @@
 <view class="container">
   <view class="tab-bar">
     <view class="tab {{currentTab === 'all' ? 'active' : ''}}" bindtap="switchTab" data-status="all">全部</view>
-    <view class="tab {{currentTab === '0' ? 'active' : ''}}" bindtap="switchTab" data-status="0">待发货</view>
+    <view class="tab {{currentTab === '0' ? 'active' : ''}}" bindtap="switchTab" data-status="0">待支付</view>
     <view class="tab {{currentTab === '1' ? 'active' : ''}}" bindtap="switchTab" data-status="1">待收货</view>
     <view class="tab {{currentTab === '2' ? 'active' : ''}}" bindtap="switchTab" data-status="2">已完成</view>
   </view>
@@ -24,21 +24,27 @@
       <view class="order-footer">
         <text class="total">共{{item.totalNum}}件商品，合计：¥{{item.totalPrice}}</text>
         
-        <view wx:if="{{item.status === 0}}" 
-              class="receive-btn" 
-              bindtap="confirmReceive" 
-              data-orderno="{{item.orderNo}}">
-          确认收货
-        </view>
+        <view class="btn-group">
+          <view wx:if="{{item.status === 0}}" 
+                class="receive-btn pay-btn" 
+                bindtap="payOrder" 
+                data-orderno="{{item.orderNo}}">去支付</view>
 
-        <!-- 已完成订单显示 删除 + 再次购买 -->
-        <view wx:if="{{item.status === 2}}" class="btn-group">
-          <view class="del-btn" bindtap="deleteOrder" data-orderno="{{item.orderNo}}">删除订单</view>
-          <view class="buy-btn" bindtap="buyAgain" data-goodsid="{{item.goodsList[0].id}}">再次购买</view>
+          <view wx:if="{{item.status === 1}}" 
+                class="receive-btn" 
+                bindtap="confirmReceive" 
+                data-orderno="{{item.orderNo}}">确认收货</view>
+
+          <block wx:if="{{item.status === 2}}">
+            <view class="del-btn" bindtap="deleteOrder" data-orderno="{{item.orderNo}}">删除</view>
+            <view class="buy-btn" bindtap="buyAgain" data-goodsid="{{item.goodsList[0].id}}">再次购买</view>
+          </block>
         </view>
       </view>
     </view>
 
-    <view wx:if="{{orderList.length === 0}}" class="empty">暂无订单</view>
+    <view wx:if="{{orderList.length === 0}}" class="empty">
+      <text>这里空空如也~</text>
+    </view>
   </scroll-view>
 </view>

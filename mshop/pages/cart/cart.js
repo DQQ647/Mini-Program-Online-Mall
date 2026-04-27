@@ -64,7 +64,7 @@ Page({
   },
 
   // ==============================
-  // 最终版结算 → 生成待发货订单
+  // 结算跳转到订单确认页
   // ==============================
   goCheckout() {
     if (this.data.cartList.length === 0) {
@@ -72,44 +72,12 @@ Page({
       return;
     }
 
-    // 1. 计算
-    let totalPrice = 0;
-    let totalNum = 0;
-    this.data.cartList.forEach(item => {
-      totalPrice += item.price * item.num;
-      totalNum += item.num;
+    // 取购物车里的商品去结算 (如果需要处理多商品，可以在这里扩展，目前取第一个)
+    let goods = this.data.cartList[0];
+    
+    // 跳转到订单确认页，并把商品信息带过去
+    wx.navigateTo({
+      url: `/pages/order-confirm/order-confirm?goodsInfo=${encodeURIComponent(JSON.stringify(goods))}&num=${goods.num}`
     });
-
-    // 2. 生成订单（完全适配你的订单格式）
-    let newOrder = {
-      orderNo: "ORD" + Date.now(),
-      status: 0,    // 0 = 待发货 ✅
-      totalPrice: totalPrice.toFixed(2),
-      totalNum: totalNum,
-      goodsList: this.data.cartList.map(item => ({
-        pic: item.url || `http://localhost:3001/images/goods/${item.id}.webp`,
-        name: item.title,
-        price: item.price,
-        num: item.num,
-        id: item.id
-      }))
-    };
-
-    // 3. 写入本地 orderList ✅
-    let orderList = wx.getStorageSync("orderList") || [];
-    orderList.unshift(newOrder);
-    wx.setStorageSync("orderList", orderList);
-
-    // 4. 清空购物车
-    wx.setStorageSync("cart", []);
-    this.setData({ cartList: [], totalPrice: "0.00" });
-
-    // 5. 跳转到 待发货
-    wx.showToast({ title: "下单成功 → 待发货", icon: "success" });
-    setTimeout(() => {
-      wx.navigateTo({
-        url: "/pages/order/order?status=0"
-      });
-    }, 1500);
   }
 });

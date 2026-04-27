@@ -14,22 +14,17 @@ Page({
     this.loadGoods();
   },
 
-  // 加载全部商品
   loadGoods() {
     wx.showLoading({ title: '加载中' })
-    let all = []
     wx.request({
-      url: "http://localhost:3001/api/goods?page=1",
+      url: "http://localhost:3001/api/goods", // 不传 page，或者后端默认返回全部
       success: res => {
-        all = all.concat(res.data.data.result)
-        wx.request({
-          url: "http://localhost:3001/api/goods?page=2",
-          success: res2 => {
-            all = all.concat(res2.data.data.result)
-            this.setData({ allGoods: all, showList: all })
-            wx.hideLoading()
-          }
+        const all = res.data.data.result;
+        this.setData({ 
+          allGoods: all, 
+          showList: all 
         })
+        wx.hideLoading()
       }
     })
   },

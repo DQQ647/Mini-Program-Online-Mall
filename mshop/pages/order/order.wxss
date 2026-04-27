@@ -1,115 +1,136 @@
 page {
-  background: #f7f3f0;
+  background-color: #f7f7f7;
+  color: #333;
 }
-.container {
-  padding: 20rpx;
-}
+
 .tab-bar {
   display: flex;
   background: #fff;
-  border-radius: 24rpx;
-  margin-bottom: 20rpx;
+  padding: 20rpx 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
+
 .tab {
   flex: 1;
   text-align: center;
-  padding: 25rpx 0;
-  font-size: 26rpx;
-  color: #666;
+  font-size: 28rpx;
+  color: #999;
+  position: relative;
 }
+
 .tab.active {
   color: #d4b9a8;
-  font-weight: 600;
+  font-weight: bold;
 }
+
+.tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -10rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40rpx;
+  height: 4rpx;
+  background: #d4b9a8;
+}
+
 .order-list {
-  padding-bottom: 40rpx;
+  padding: 20rpx;
+  height: calc(100vh - 100rpx);
+  box-sizing: border-box;
 }
+
 .order-item {
   background: #fff;
-  border-radius: 24rpx;
+  border-radius: 20rpx;
   padding: 30rpx;
   margin-bottom: 20rpx;
 }
+
 .order-header {
   display: flex;
   justify-content: space-between;
+  border-bottom: 1rpx solid #f0f0f0;
+  padding-bottom: 20rpx;
   margin-bottom: 20rpx;
 }
+
 .order-no {
-  font-size: 26rpx;
-  color: #666;
+  font-size: 24rpx;
+  color: #999;
 }
+
 .status {
   font-size: 26rpx;
   color: #d4b9a8;
 }
+
 .goods-item {
   display: flex;
-  margin-bottom: 20rpx;
+  margin-bottom: 30rpx;
 }
+
 .goods-item image {
-  width: 120rpx;
-  height: 120rpx;
+  width: 160rpx;
+  height: 160rpx;
   border-radius: 12rpx;
   margin-right: 20rpx;
 }
-.goods-info {
-  flex: 1;
+
+.goods-info .name {
+  font-size: 28rpx;
+  line-height: 1.4;
+  margin-bottom: 20rpx;
+}
+
+.goods-info .price {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #e4393c;
+}
+
+.order-footer {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  align-items: flex-end;
+  border-top: 1rpx solid #f0f0f0;
+  padding-top: 20rpx;
 }
-.name {
-  font-size: 28rpx;
-  color: #333;
-}
-.price {
-  font-size: 28rpx;
-  color: #d4b9a8;
-}
-.order-footer {
-  text-align: right;
-}
+
 .total {
   font-size: 26rpx;
   color: #666;
-  display: block;
-  margin-bottom: 15rpx;
-}
-.empty {
-  text-align: center;
-  padding: 100rpx 0;
-  color: #999;
+  margin-bottom: 20rpx;
 }
 
-.receive-btn {
-  display: inline-block;
-  padding: 10rpx 20rpx;
-  border: 1rpx solid #d4b9a8;
-  color: #d4b9a8;
-  border-radius: 8rpx;
-  font-size: 24rpx;
-  margin-top: 10rpx;
-}
-
-/* 已完成按钮组 */
 .btn-group {
   display: flex;
-  justify-content: flex-end;
   gap: 20rpx;
-  margin-top: 10rpx;
 }
-.del-btn {
-  padding: 10rpx 20rpx;
-  border: 1rpx solid #999;
-  color: #999;
-  border-radius: 8rpx;
+
+.receive-btn, .del-btn, .buy-btn {
+  padding: 10rpx 30rpx;
+  border-radius: 40rpx;
   font-size: 24rpx;
+  border: 1rpx solid #ddd;
 }
-.buy-btn {
-  padding: 10rpx 20rpx;
+
+/* 去支付按钮的高亮样式  */
+.pay-btn {
   background: #d4b9a8;
-  color: #fff;
-  border-radius: 8rpx;
-  font-size: 24rpx;
+  color: #fff !important;
+  border: none !important;
+}
+
+.del-btn {
+  color: #999;
+}
+
+.empty {
+  text-align: center;
+  padding-top: 200rpx;
+  color: #ccc;
+  font-size: 28rpx;
 }

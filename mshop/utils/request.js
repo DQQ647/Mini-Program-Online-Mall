@@ -17,12 +17,16 @@ export function request(options) {
         if (res.statusCode >= 200 && res.statusCode < 300) {
           resolve(res.data); 
         } else {
-          wx.showToast({ title: '服务器开小差', icon: 'none' });
+          if (options.showMsg !== false) {
+            wx.showToast({ title: '服务器开小差', icon: 'none' });
+          }
           reject(res);
         }
       },
       fail(err) {
-        wx.showToast({ title: '网络连接失败', icon: 'none' });
+        if (options.showMsg !== false) {
+          wx.showToast({ title: '网络连接失败', icon: 'none' });
+        }
         reject(err);
       },
       complete() {

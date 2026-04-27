@@ -27,6 +27,7 @@ App({
             const loginRes = await request({
               url: 'http://localhost:3001/api/login', 
               method: 'POST',
+              showMsg: false,
               data: { code: res.code }
             });
             if (loginRes.success) {
