@@ -1,7 +1,40 @@
-<view class="login-container">
-  <view class="logo-box">M</view>
+<view class="container">
+  <view class="top-bg"></view>
+
   <view class="login-card">
-    <view class="title">欢迎使用 MSHOP</view>
-    <button class="login-btn" bindtap="handleLogin">微信一键登录</button>
+    <view class="logo-section">
+      <view class="logo-wrapper">
+        <image class="logo" src="/images/logo.png" mode="aspectFit"></image>
+      </view>
+      <view class="app-name">商城在线小程序</view>
+      <view class="slogan">发现生活之美，开启品质生活</view>
+    </view>
+
+    <view class="action-section">
+      <view class="auth-title">申请获取以下权限</view>
+      <view class="auth-desc">· 获取您的公开信息（昵称、头像等）</view>
+      <view class="auth-desc">· 为您提供个性化的购物体验</view>
+
+      <button class="login-btn" bindtap="handleLogin">
+        <view class="btn-content">
+          <image class="btn-icon" src="/images/wx_icon.png"></image>
+          <text>微信授权一键登录</text>
+        </view>
+      </button>
+      
+      <view class="cancel-btn" bindtap="goBack">暂不登录</view>
+    </view>
+  </view>
+
+  <view class="footer-agreement">
+    <checkbox-group bindchange="onAgreeChange">
+      <label class="agreement-label">
+        <checkbox value="true" checked="{{isAgree}}" color="#c9a886" />
+        <text class="text">我已阅读并同意</text>
+        <text class="link" catchtap="showProtocol">《用户协议》</text>
+        <text class="text">与</text>
+        <text class="link" catchtap="showPrivacy">《隐私政策》</text>
+      </label>
+    </checkbox-group>
   </view>
 </view>

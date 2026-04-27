@@ -23,15 +23,16 @@ Page({
   loadOrderList(status) {
     let allOrders = wx.getStorageSync('orderList') || [];
     
+    // 逻辑：0待支付，1待收货，2已完成
     let list = status === 'all' 
       ? allOrders 
       : allOrders.filter(item => item.status == status);
 
     list = list.map(item => {
       let statusText = '';
-      if (item.status === 0) statusText = '待支付';
-      else if (item.status === 1) statusText = '待收货';
-      else if (item.status === 2) statusText = '已完成';
+      if (item.status === 0) statusText = '等待付款';
+      else if (item.status === 1) statusText = '卖家已发货';
+      else if (item.status === 2) statusText = '交易完成';
       return { ...item, statusText };
     });
 
@@ -39,19 +40,19 @@ Page({
     this.autoReceiveSimulator(); 
   },
 
-  // 待支付状态下发起支付
+  // 立即支付
   payOrder(e) {
     const orderNo = e.currentTarget.dataset.orderno;
     wx.showModal({
-      title: '订单支付',
-      content: '确认模拟支付该订单吗？',
-      confirmColor: '#07c160',
+      title: '支付确认',
+      content: '确认模拟支付该订单？',
+      confirmColor: '#c9a886',
       success: (res) => {
         if (res.confirm) {
           let all = wx.getStorageSync('orderList') || [];
           const idx = all.findIndex(i => i.orderNo === orderNo);
           if (idx !== -1) {
-            all[idx].status = 1; // 从待支付(0)变成待收货(1)
+            all[idx].status = 1; 
             wx.setStorageSync('orderList', all);
             wx.showToast({ title: '支付成功' });
             this.loadOrderList(this.data.currentTab);
@@ -61,18 +62,28 @@ Page({
     });
   },
 
+  // 确认收货
   confirmReceive(e) {
     const orderNo = e.currentTarget.dataset.orderno;
-    let all = wx.getStorageSync('orderList') || [];
-    const idx = all.findIndex(i => i.orderNo === orderNo);
-    if (idx !== -1) {
-      all[idx].status = 2; 
-      wx.setStorageSync('orderList', all);
-      wx.showToast({ title: '收货成功' });
-      this.loadOrderList(this.data.currentTab);
-    }
+    wx.showModal({
+      title: '收货确认',
+      content: '是否确认已收到商品？',
+      success: (res) => {
+        if (res.confirm) {
+          let all = wx.getStorageSync('orderList') || [];
+          const idx = all.findIndex(i => i.orderNo === orderNo);
+          if (idx !== -1) {
+            all[idx].status = 2; 
+            wx.setStorageSync('orderList', all);
+            wx.showToast({ title: '已确认收货' });
+            this.loadOrderList(this.data.currentTab);
+          }
+        }
+      }
+    });
   },
 
+  // 自动物流模拟
   autoReceiveSimulator() {
     let all = wx.getStorageSync('orderList') || [];
     all.forEach(item => {
@@ -94,8 +105,8 @@ Page({
   deleteOrder(e) {
     const orderNo = e.currentTarget.dataset.orderno;
     wx.showModal({
-      title: '提示',
-      content: '确认删除该记录吗？',
+      title: '删除订单',
+      content: '删除后无法找回，确定吗？',
       success: (res) => {
         if (res.confirm) {
           let all = wx.getStorageSync('orderList') || [];
@@ -110,5 +121,9 @@ Page({
   buyAgain(e) {
     const id = e.currentTarget.dataset.goodsid;
     wx.navigateTo({ url: '/pages/details/details?id=' + id });
+  },
+
+  goHome() {
+    wx.switchTab({ url: '/pages/index/index' });
   }
 });

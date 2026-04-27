@@ -12,67 +12,59 @@ Page({
   },
 
   onLoad(options) {
-    // 接收首页传过来的分类
     if (options.type) {
-      let idx = this.data.cateList.findIndex(t => t.type == options.type);
+      const idx = this.data.cateList.findIndex(t => t.type == options.type);
       if (idx >= 0) {
         this.setData({ currentIndex: idx });
       }
     }
-    this.loadAllData();
+    this.loadData();
   },
 
-  // 切换左侧分类
+  loadData() {
+    wx.showLoading({ title: "加载中...", mask: true });
+    
+    wx.request({
+      url: "http://localhost:3001/api/goods",
+      success: (res) => {
+        const all = res.data.data?.result || [];
+        this.setData({ allGoods: all });
+        this.filterByCurrentIndex();
+        wx.hideLoading();
+      },
+      fail: () => {
+        wx.hideLoading();
+        wx.showToast({ title: '数据加载失败', icon: 'none' });
+      }
+    });
+  },
+
   switchCate(e) {
-    let index = e.currentTarget.dataset.index;
-    let type = this.data.cateList[index].type;
+    const index = e.currentTarget.dataset.index;
     this.setData({ currentIndex: index });
-    this.filterGoods(type);
+    this.filterByCurrentIndex();
   },
 
-  // 修改后的 category.js
-loadAllData() {
-  wx.showLoading({ title: "加载中..." });
-  
-  wx.request({
-    url: "http://localhost:3001/api/goods", 
-    success: (res) => {
-      // 检查返回数据结构是否正确
-      let all = res.data.data?.result || [];
-      
-      this.setData({ allGoods: all });
-
-      // 默认显示当前选中的分类商品
-      let defaultType = this.data.cateList[this.data.currentIndex].type;
-      this.filterGoods(defaultType);
-      
-      wx.hideLoading();
-    },
-    fail: () => {
-      wx.hideLoading();
-      wx.showToast({ title: '网络请求失败', icon: 'none' });
-    }
-  });
-},
-
-  // 筛选对应分类商品
-  filterGoods(type) {
-    let showList = this.data.allGoods.filter(item => item.tag === type);
-    this.setData({ goodsList: showList });
+  filterByCurrentIndex() {
+    const type = this.data.cateList[this.data.currentIndex].type;
+    const filtered = this.data.allGoods.filter(item => item.tag === type);
+    this.setData({ goodsList: filtered });
   },
 
-  // 进入商品详情
   goDetail(e) {
-    let id = e.currentTarget.dataset.id;
-    wx.navigateTo({
-      url: "/pages/details/details?id=" + id
-    });
+    const id = e.currentTarget.dataset.id;
+    wx.navigateTo({ url: "/pages/details/details?id=" + id });
   },
 
-  // 直接跳转到首页
-  goHome() {
-    wx.switchTab({
-      url: "/pages/index/index"
-    });
+  // 🌟 新增：处理返回按钮的逻辑 🌟
+  goBack() {
+    const pages = getCurrentPages();
+    // 如果页面栈大于 1，说明是从详情页等其他非 Tab 页跳过来的，正常返回
+    if (pages.length > 1) {
+      wx.navigateBack({ delta: 1 });
+    } else {
+      // 如果页面栈只有 1，说明是直接点进来的，强制跳转回首页 Tab
+      wx.switchTab({ url: '/pages/index/index' });
+    }
   }
 });

@@ -1,9 +1,13 @@
-<view class="back-btn" bindtap="goHome">
-  <text class="back-icon">←</text>
-</view>
+<view class="custom-header">
+  <view class="back-action" bindtap="goBack">
+    <text class="back-arrow">←</text>
+    <text class="back-text">返回</text>
+  </view>
+  <view class="header-title">商品分类</view>
+  <view class="header-placeholder"></view> </view>
 
 <view class="container">
-  <scroll-view class="left-nav" scroll-y>
+  <scroll-view class="sidebar" scroll-y>
     <view 
       wx:for="{{cateList}}" 
       wx:key="type"
@@ -11,25 +15,45 @@
       bindtap="switchCate"
       data-index="{{index}}"
     >
-      {{item.name}}
+      <view class="indicator" wx:if="{{currentIndex === index}}"></view>
+      <text class="nav-text">{{item.name}}</text>
     </view>
   </scroll-view>
 
-  <scroll-view class="goods-container" scroll-y>
-    <view class="goods-grid">
+  <scroll-view class="goods-scroll" scroll-y>
+    <view class="header-box">
+      <view class="cate-title">{{cateList[currentIndex].name}}</view>
+      <view class="cate-count">共 {{goodsList.length}} 款商品</view>
+    </view>
+
+    <view class="goods-list">
       <view 
         wx:for="{{goodsList}}" 
         wx:key="id"
-        class="goods-card"
+        class="goods-item"
         bindtap="goDetail"
         data-id="{{item.id}}"
       >
-        <image class="goods-img" src="{{item.url}}" mode="aspectFill"></image>
+        <image class="goods-img" src="{{item.url}}" mode="aspectFit"></image>
+        
         <view class="goods-info">
-          <text class="goods-title">{{item.title}}</text>
-          <text class="goods-price">¥{{item.price}}</text>
+          <view class="goods-title">{{item.title}}</view>
+          
+          <view class="goods-footer">
+            <view class="price-box">
+              <text class="currency">¥</text>
+              <text class="price">{{item.price}}</text>
+            </view>
+            <image class="cart-icon" src="/images/cart_active.png"></image>
+          </view>
         </view>
       </view>
     </view>
+
+    <view wx:if="{{goodsList.length === 0}}" class="empty-state">
+      <view class="empty-text">该分类下暂无商品</view>
+    </view>
+    
+    <view class="safe-bottom"></view>
   </scroll-view>
 </view>

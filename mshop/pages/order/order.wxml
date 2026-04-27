@@ -6,45 +6,48 @@
     <view class="tab {{currentTab === '2' ? 'active' : ''}}" bindtap="switchTab" data-status="2">已完成</view>
   </view>
 
-  <scroll-view class="order-list" scroll-y>
-    <view wx:for="{{orderList}}" wx:key="orderNo" class="order-item">
-      <view class="order-header">
-        <text class="order-no">订单号：{{item.orderNo}}</text>
-        <text class="status">{{item.statusText}}</text>
+  <scroll-view class="order-scroll" scroll-y>
+    <view class="order-card" wx:for="{{orderList}}" wx:key="orderNo">
+      <view class="card-header">
+        <view class="order-no">单号：{{item.orderNo}}</view>
+        <view class="status-tag status-{{item.status}}">{{item.statusText}}</view>
       </view>
 
-      <view class="goods-item">
-        <image src="{{item.goodsList[0].pic}}" mode="aspectFill"></image>
-        <view class="goods-info">
-          <view class="name">{{item.goodsList[0].name}}</view>
-          <view class="price">¥{{item.goodsList[0].price}}</view>
+      <view class="card-body" bindtap="buyAgain" data-goodsid="{{item.goodsList[0].id}}">
+        <image class="goods-img" src="{{item.goodsList[0].pic}}" mode="aspectFill"></image>
+        <view class="goods-detail">
+          <view class="goods-name">{{item.goodsList[0].name}}</view>
+          <view class="goods-spec">规格：默认</view>
+          <view class="price-row">
+            <text class="unit">¥</text>
+            <text class="price">{{item.goodsList[0].price}}</text>
+            <text class="num">x{{item.goodsList[0].num}}</text>
+          </view>
         </view>
       </view>
 
-      <view class="order-footer">
-        <text class="total">共{{item.totalNum}}件商品，合计：¥{{item.totalPrice}}</text>
+      <view class="card-footer">
+        <view class="total-info">
+          共{{item.totalNum}}件商品，实付款 <text class="total-price">¥{{item.totalPrice}}</text>
+        </view>
         
-        <view class="btn-group">
-          <view wx:if="{{item.status === 0}}" 
-                class="receive-btn pay-btn" 
-                bindtap="payOrder" 
-                data-orderno="{{item.orderNo}}">去支付</view>
-
-          <view wx:if="{{item.status === 1}}" 
-                class="receive-btn" 
-                bindtap="confirmReceive" 
-                data-orderno="{{item.orderNo}}">确认收货</view>
-
+        <view class="action-btns">
+          <view wx:if="{{item.status === 0}}" class="btn btn-primary" bindtap="payOrder" data-orderno="{{item.orderNo}}">立即支付</view>
+          
+          <view wx:if="{{item.status === 1}}" class="btn btn-outline" bindtap="confirmReceive" data-orderno="{{item.orderNo}}">确认收货</view>
+          
           <block wx:if="{{item.status === 2}}">
-            <view class="del-btn" bindtap="deleteOrder" data-orderno="{{item.orderNo}}">删除</view>
-            <view class="buy-btn" bindtap="buyAgain" data-goodsid="{{item.goodsList[0].id}}">再次购买</view>
+            <view class="btn btn-default" bindtap="deleteOrder" data-orderno="{{item.orderNo}}">删除订单</view>
+            <view class="btn btn-outline" bindtap="buyAgain" data-goodsid="{{item.goodsList[0].id}}">再次购买</view>
           </block>
         </view>
       </view>
     </view>
 
-    <view wx:if="{{orderList.length === 0}}" class="empty">
-      <text>这里空空如也~</text>
+    <view wx:if="{{orderList.length === 0}}" class="empty-holder">
+      <view class="empty-icon">📂</view>
+      <view class="empty-text">还没有相关的订单记录</view>
+      <view class="empty-btn" bindtap="goHome">去逛逛</view>
     </view>
   </scroll-view>
 </view>

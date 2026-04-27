@@ -1,60 +1,66 @@
 page {
-  background-color: #f7f7f7;
-  color: #333;
+  background-color: #f8f9fa;
 }
 
+/* 导航栏样式 */
 .tab-bar {
   display: flex;
-  background: #fff;
-  padding: 20rpx 0;
+  background: #ffffff;
+  padding: 10rpx 0;
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 10;
+  box-shadow: 0 4rpx 10rpx rgba(0,0,0,0.02);
 }
 
 .tab {
   flex: 1;
   text-align: center;
   font-size: 28rpx;
-  color: #999;
-  position: relative;
+  color: #888;
+  padding: 20rpx 0;
+  transition: all 0.3s;
 }
 
 .tab.active {
-  color: #d4b9a8;
+  color: #333;
   font-weight: bold;
+  position: relative;
 }
 
 .tab.active::after {
   content: '';
   position: absolute;
-  bottom: -10rpx;
+  bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 40rpx;
-  height: 4rpx;
-  background: #d4b9a8;
+  width: 30rpx;
+  height: 6rpx;
+  background: #c9a886;
+  border-radius: 10rpx;
 }
 
-.order-list {
-  padding: 20rpx;
+/* 订单卡片样式 */
+.order-scroll {
   height: calc(100vh - 100rpx);
+  padding: 20rpx;
   box-sizing: border-box;
 }
 
-.order-item {
-  background: #fff;
-  border-radius: 20rpx;
+.order-card {
+  background: #ffffff;
+  border-radius: 24rpx;
+  margin-bottom: 24rpx;
   padding: 30rpx;
-  margin-bottom: 20rpx;
+  box-shadow: 0 8rpx 20rpx rgba(0,0,0,0.03);
 }
 
-.order-header {
+/* 卡片头部 */
+.card-header {
   display: flex;
   justify-content: space-between;
-  border-bottom: 1rpx solid #f0f0f0;
-  padding-bottom: 20rpx;
-  margin-bottom: 20rpx;
+  align-items: center;
+  margin-bottom: 30rpx;
 }
 
 .order-no {
@@ -62,75 +68,125 @@ page {
   color: #999;
 }
 
-.status {
-  font-size: 26rpx;
-  color: #d4b9a8;
+.status-tag {
+  font-size: 24rpx;
+  padding: 6rpx 16rpx;
+  border-radius: 8rpx;
 }
 
-.goods-item {
+.status-0 { background: #fff5e6; color: #ffa940; } /* 待支付-暖橙 */
+.status-1 { background: #e6f7ff; color: #1890ff; } /* 待收货-天蓝 */
+.status-2 { background: #f6ffed; color: #52c41a; } /* 已完成-草绿 */
+
+/* 卡片主体 */
+.card-body {
   display: flex;
   margin-bottom: 30rpx;
 }
 
-.goods-item image {
+.goods-img {
   width: 160rpx;
   height: 160rpx;
-  border-radius: 12rpx;
-  margin-right: 20rpx;
+  border-radius: 16rpx;
+  background: #f5f5f5;
+  margin-right: 24rpx;
 }
 
-.goods-info .name {
+.goods-detail {
+  flex: 1;
+}
+
+.goods-name {
   font-size: 28rpx;
+  font-weight: 500;
+  color: #333;
   line-height: 1.4;
-  margin-bottom: 20rpx;
+  margin-bottom: 12rpx;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-.goods-info .price {
-  font-size: 32rpx;
-  font-weight: bold;
-  color: #e4393c;
+.goods-spec {
+  font-size: 22rpx;
+  color: #bbb;
+  margin-bottom: 16rpx;
 }
 
-.order-footer {
+.price-row {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  border-top: 1rpx solid #f0f0f0;
-  padding-top: 20rpx;
+  align-items: baseline;
 }
 
-.total {
-  font-size: 26rpx;
+.unit { font-size: 24rpx; color: #333; margin-right: 4rpx; }
+.price { font-size: 32rpx; font-weight: bold; color: #333; }
+.num { font-size: 24rpx; color: #999; margin-left: auto; }
+
+/* 卡片底部 */
+.card-footer {
+  border-top: 1rpx solid #f8f8f8;
+  padding-top: 24rpx;
+}
+
+.total-info {
+  text-align: right;
+  font-size: 24rpx;
   color: #666;
-  margin-bottom: 20rpx;
+  margin-bottom: 24rpx;
 }
 
-.btn-group {
+.total-price {
+  font-size: 32rpx;
+  color: #333;
+  font-weight: bold;
+  margin-left: 10rpx;
+}
+
+/* 按钮组 */
+.action-btns {
   display: flex;
+  justify-content: flex-end;
   gap: 20rpx;
 }
 
-.receive-btn, .del-btn, .buy-btn {
-  padding: 10rpx 30rpx;
+.btn {
+  padding: 14rpx 36rpx;
   border-radius: 40rpx;
-  font-size: 24rpx;
-  border: 1rpx solid #ddd;
+  font-size: 26rpx;
+  transition: opacity 0.2s;
 }
 
-/* 去支付按钮的高亮样式  */
-.pay-btn {
-  background: #d4b9a8;
-  color: #fff !important;
-  border: none !important;
+.btn:active { opacity: 0.7; }
+
+.btn-primary {
+  background: #c9a886;
+  color: #fff;
 }
 
-.del-btn {
+.btn-outline {
+  border: 1rpx solid #c9a886;
+  color: #c9a886;
+}
+
+.btn-default {
+  border: 1rpx solid #eee;
   color: #999;
 }
 
-.empty {
-  text-align: center;
+/* 空状态 */
+.empty-holder {
   padding-top: 200rpx;
-  color: #ccc;
-  font-size: 28rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.empty-icon { font-size: 100rpx; margin-bottom: 30rpx; opacity: 0.5; }
+.empty-text { font-size: 28rpx; color: #ccc; margin-bottom: 40rpx; }
+.empty-btn {
+  background: #c9a886;
+  color: #fff;
+  padding: 20rpx 80rpx;
+  border-radius: 50rpx;
 }

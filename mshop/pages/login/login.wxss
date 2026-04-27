@@ -1,24 +1,157 @@
-page{
-  background:#f7f3f0;
+page {
+  background-color: #f8f9fa;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
-.container{
-  padding:80rpx 30rpx;
+
+.top-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 400rpx;
+  background: linear-gradient(180deg, #c9a886 0%, #f8f9fa 100%);
+  z-index: 1;
 }
-.login-card{
-  background:#fff;
-  border-radius:32rpx;
-  padding:60rpx 40rpx;
-  text-align:center;
+
+.login-card {
+  position: relative;
+  z-index: 2;
+  margin: 160rpx 40rpx 0;
+  background: #ffffff;
+  border-radius: 40rpx;
+  padding: 80rpx 40rpx;
+  box-shadow: 0 20rpx 60rpx rgba(201, 168, 134, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box; /* 🌟 增加这一行，防止 padding 影响布局计算 */
 }
-.title{
-  font-size:36rpx;
-  font-weight:bold;
-  margin-bottom:60rpx;
+
+/* Logo 区域样式 */
+.logo-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 80rpx;
 }
-.login-btn{
-  background:#0071e3;
-  color:#fff;
-  border-radius:20rpx;
-  padding:25rpx 0;
-  font-size:28rpx;
+
+.logo-wrapper {
+  width: 160rpx;
+  height: 160rpx;
+  background: #fff;
+  border-radius: 40rpx;
+  box-shadow: 0 10rpx 30rpx rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30rpx;
+}
+
+.logo {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.app-name {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-bottom: 12rpx;
+}
+
+.slogan {
+  font-size: 24rpx;
+  color: #999;
+  text-align: center;
+}
+
+/* 权限说明 */
+.action-section {
+  width: 100%;
+}
+
+.auth-title {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+}
+
+.auth-desc {
+  font-size: 26rpx;
+  color: #888;
+  margin-bottom: 12rpx;
+  padding-left: 10rpx;
+}
+
+/* 🌟 登录按钮样式更新 🌟 */
+.login-btn {
+  margin-top: 60rpx;
+  width: 100% !important;
+  height: 100rpx;
+  background: #c9a886;
+  color: #fff;
+  border-radius: 50rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* 确保 btn-content 整体在按钮内居中 */
+  font-size: 30rpx;
+  font-weight: bold;
+  box-shadow: 0 10rpx 20rpx rgba(201, 168, 134, 0.3);
+  padding: 0; /* 🌟 移除按钮自带 padding */
+}
+
+.btn-content {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* 确保内容内部也居中 */
+  gap: 16rpx; /* 图标和文本之间的间距 */
+}
+
+.login-btn:active {
+  opacity: 0.9;
+  transform: scale(0.98);
+}
+
+.btn-icon {
+  width: 36rpx; /* 微调图标大小 */
+  height: 36rpx;
+  /* 这里不需要 margin-right */
+}
+
+.cancel-btn {
+  margin-top: 30rpx;
+  text-align: center;
+  font-size: 26rpx;
+  color: #bbb;
+  padding: 20rpx;
+}
+
+/* 底部协议 */
+.footer-agreement {
+  margin-top: auto;
+  padding-bottom: 60rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.agreement-label {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* 🌟 确保 label 内所有内容水平居中 */
+  font-size: 22rpx;
+  color: #999;
+}
+
+.agreement-label checkbox {
+  transform: scale(0.7);
+  /* margin-right: -10rpx; 🌟 移除这一行，避免负边距引起偏移 */
+}
+
+.link {
+  color: #c9a886;
 }
